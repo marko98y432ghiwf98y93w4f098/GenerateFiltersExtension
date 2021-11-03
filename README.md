@@ -1,6 +1,11 @@
-# Generate Visual Studio Filters Extention
+# Generate Visual Studio C++ Filters Extention
 
 ## About
+
+Fork of https://github.com/BobbyAnguelov/GenerateFiltersExtension and updated for Visual Studio 2022:
+- Adds support for vcxitems (shared items project)
+
+
 
 Fork of https://github.com/Dllieu/VisualStudioCppExtensions and updated for Visual Studio 2019:
 - **Generate C++ Project's Filters**
@@ -13,7 +18,7 @@ Fork of https://github.com/Dllieu/VisualStudioCppExtensions and updated for Visu
 </p>
 
 ## Installation
-- Download the ```*.vsix``` package from the **[latest release](https://github.com/BobbyAnguelov/GenerateFiltersExtension/releases/latest)**
+- Download the ```*.vsix``` package from the **[latest release](https://github.com/marko98y432ghiwf98y93w4f098/generate-cpp-filters-----visual-studio-2022/releases/latest)**
 - Double click on the downloaded package and follow the instructions
 
 ## Example Usage
@@ -50,9 +55,9 @@ As a result, your C++ project will have filters that replicate your C++ sources 
 </p>
 
 ## Dependencies for developers
-If you are interested in enhancing this extension, you must install Visual Studio 2019 SDK
+If you are interested in enhancing this extension, you must install Visual Studio 2022 SDK
 
 ### Debug
 You have to change the debug settings for the VSIXProject to be able to debug it (```Properties -> Debug```)
-- Start external program : ```C:\Program Files (x86)\Microsoft Visual Studio 16.0\Common7\IDE\devenv.exe```
+- Start external program : ```C:\Program Files\Microsoft Visual Studio\2022\Preview\Common7\IDE\devenv.exe```
 - Command line arguments: ```/rootsuffix EXP```

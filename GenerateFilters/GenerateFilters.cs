@@ -161,14 +161,9 @@ namespace VisualStudioCppExtensions
             string filterAssemblyInstallionPath = Path.GetDirectoryName(GetAssemblyLocalPathFrom(typeof(GenerateFilterPackage)));
 
             DTE dte = (DTE)Package.GetGlobalService(typeof(DTE));
-            if (dte.Version.StartsWith("14"))
-            {
-                Assembly.LoadFrom(Path.Combine(filterAssemblyInstallionPath, @"Resources\\VCProjectEngine_14.0.dll"));
-            }
+            if (dte.Version.StartsWith("17")) Assembly.LoadFrom(Path.Combine(filterAssemblyInstallionPath, @"Resources\\VCProjectEngine_17.0.dll"));
             else
-            {
-                Assembly.LoadFrom(Path.Combine(filterAssemblyInstallionPath, @"Resources\\VCProjectEngine_15.0.dll"));
-            }
+                throw new Exception();
 
             dynamic vcProject = project.Object;
             foreach (dynamic vcConfiguration in vcProject.Configurations)
@@ -320,7 +315,7 @@ namespace VisualStudioCppExtensions
             xmlWriter.WriteEndElement();
         }
 
-        private static void WriteSources(XmlWriter xmlWriter, string itemType, List<string> files, string projectPath, string commonPath)
+        private static void WriteSources(XmlWriter xmlWriter, string itemType, List<string> files, string projectPath, string commonPath, bool pIsVcxitems)
         {
             if (files == null || files.Count == 0)
                 return;
@@ -334,7 +329,7 @@ namespace VisualStudioCppExtensions
                     continue;
 
                 xmlWriter.WriteStartElement(itemType);
-                xmlWriter.WriteAttributeString("Include", GetRelativePathIfNeeded(projectPath, file));
+                xmlWriter.WriteAttributeString("Include", (pIsVcxitems ? "$(MSBuildThisFileDirectory)" : "") + GetRelativePathIfNeeded(projectPath, file));
 
                 {
                     xmlWriter.WriteStartElement("Filter");
@@ -406,6 +401,7 @@ namespace VisualStudioCppExtensions
             // Keep for Post-Unloading
             var projectFilename = project.FileName;
             var projectPath = Path.GetDirectoryName(projectFilename);
+            var pIsVcxitems = projectFilename.EndsWith("vcxitems", StringComparison.OrdinalIgnoreCase);
             project.DTE.ExecuteCommand("Project.UnloadProject");
 
             var xmlSettings = new XmlWriterSettings() { Indent = true };
@@ -417,7 +413,7 @@ namespace VisualStudioCppExtensions
 
                 WriteFilter(xmlWriter, GenerateUniquePathByFilter(commonPath, filesPerItemType));
                 foreach (var entry in filesPerItemType)
-                    WriteSources(xmlWriter, entry.Key, entry.Value, projectPath, commonPath);
+                    WriteSources(xmlWriter, entry.Key, entry.Value, projectPath, commonPath, pIsVcxitems);
 
                 xmlWriter.WriteEndElement();
             }
