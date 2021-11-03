@@ -88,10 +88,12 @@ namespace VisualStudioCppExtensions
 
 
             {
-                object o3 = project2.References;
+                //References o3 = project2.References;
                 VCReferences o4 = project2.VCReferences;
-                VCReferences o5 = (VCReferences)o3;
-                bool x = (object.ReferenceEquals(o4, o5));
+                foreach (VCReference o5 in o4)
+                {
+                    o5.
+                }
             }
 
 
