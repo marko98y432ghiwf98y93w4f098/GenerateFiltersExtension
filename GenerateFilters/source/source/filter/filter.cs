@@ -61,18 +61,13 @@ namespace VisualStudioCppExtensions
         }
 
         // Gets the service provider from the owner package.
-        private IServiceProvider packageIServiceProvider
-        {
-            get => this.package;
-        }
+        private IServiceProvider packageIServiceProvider { get => this.package; }
 
 
         // Initializes the singleton instance of the command.      
         /// <param name="package">Owner package, not null.</param>
-        public static void Initialize(Package package)
-        {
-            Instance = new filter(package);
-        }
+        public static void Initialize(Package package) => Instance = new filter(package);
+        
 
         /// <summary>
         /// Initializes a new instance of the <see cref="filter"/> class.

@@ -20,7 +20,7 @@
     <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>resources\GenerateFilters.ico</ApplicationIcon>
+    <ApplicationIcon>resources\generateFilters.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
@@ -77,19 +77,32 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="source\filter\filter.cs" />
-    <Compile Include="source\filter\work.cs" />
-    <Compile Include="source\package.cs" />
+    <Compile Include="source\source\filter\filter.cs" />
+    <Compile Include="source\source\project\projectData.cs" />
+    <Compile Include="source\source\other\test\test.cs" />
+    <Compile Include="source\source\filter\work.cs" />
+    <Compile Include="source\gui\advanced.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="source\gui\advanced.Designer.cs">
+      <DependentUpon>advanced.cs</DependentUpon>
+    </Compile>
+    <Compile Include="source\gui\question.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="source\gui\question.Designer.cs">
+      <DependentUpon>question.cs</DependentUpon>
+    </Compile>
+    <Compile Include="source\source\package.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="source\filter\path.cs" />
-    <Compile Include="source\filter\project.cs" />
-    <Compile Include="source\filter\xml.cs" />
+    <Compile Include="source\source\utility\path.cs" />
+    <Compile Include="source\source\project\project.cs" />
+    <Compile Include="source\source\filter\xml.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="resources\VCProjectEngine_17.0.dll" />
     <None Include="key.snk" />
-    <Content Include="resources\GenerateFiltersPackage.ico" />
-    <Content Include="resources\LICENSE">
+    <Content Include="resources\generateFiltersPackage.ico" />
+    <Content Include="resources\license">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <None Include="source.extension.vsixmanifest">
@@ -101,11 +114,11 @@
       <ResourceName>Menus.ctmenu</ResourceName>
       <SubType>Designer</SubType>
     </VSCTCompile>
-    <Content Include="resources\GenerateFilters.ico">
+    <Content Include="resources\generateFilters.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="resources\PreviewImage.png">
+    <Content Include="resources\previewImage.png">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
   </ItemGroup>
@@ -115,19 +128,26 @@
       <ManifestResourceName>VSPackage</ManifestResourceName>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="source\gui\advanced.resx">
+      <DependentUpon>advanced.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="source\gui\question.resx">
+      <DependentUpon>question.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="VCProjectEngine_17.0, Version=17.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>resources\VCProjectEngine_17.0.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.SDK">
       <Version>17.0.0-previews-4-31709-430</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.VCProjectEngine">
+      <Version>17.0.31902.203</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.VSSDK.BuildTools">
       <Version>17.0.5322-preview5-g2cf1b9c5</Version>

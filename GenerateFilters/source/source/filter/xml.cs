@@ -18,7 +18,6 @@ namespace VisualStudioCppExtensions
     {
 
 
-        //xml utils
         private static void WriteFilter(XmlWriter xmlWriter, HashSet<string> filters)
         {
             if (filters == null || filters.Count == 0)
@@ -41,35 +40,32 @@ namespace VisualStudioCppExtensions
             xmlWriter.WriteEndElement();
         }
 
-        private static void WriteSources(XmlWriter xmlWriter, string itemType, List<string> files, string projectPath, string commonPath, bool pIsVcxitems)
+
+
+
+        private static void WriteSources(XmlWriter xmlWriter, string fileType, List<string> files, ProjectData p)
         {
-            if (files == null || files.Count == 0)
-                return;
+            if (files == null || files.Count == 0) return;
+
 
             // Only write if one occurence
             xmlWriter.WriteStartElement("ItemGroup");
-            foreach (var file in files)
+            foreach (var f in files)
             {
-                var path = Path.GetDirectoryName(file);
-                if (path.Length == commonPath.Length)
-                    continue;
+                string d = Path.GetDirectoryName(f);
+                if (d.Length < p.r.dir.Length) continue;
+                string s = p.r.filterAppend(pathUtility.GetExtensionFromCommon(p.r.dir, d));
+                if (s == "") continue;
 
-                xmlWriter.WriteStartElement(itemType);
-                xmlWriter.WriteAttributeString("Include", (pIsVcxitems ? "$(MSBuildThisFileDirectory)" : "") + GetRelativePathIfNeeded(projectPath, file));
-
-                {
-                    xmlWriter.WriteStartElement("Filter");
-                    xmlWriter.WriteString(GetPathExtensionFromCommonPath(commonPath, path));
-                    xmlWriter.WriteEndElement();
-                }
-
+                xmlWriter.WriteStartElement(fileType);
+                xmlWriter.WriteAttributeString("Include", (p.isVcxitems ? "$(MSBuildThisFileDirectory)" : "") + pathUtility.GetRelativeIfNeeded(p.path, f));
+                xmlWriter.WriteStartElement("Filter");
+                xmlWriter.WriteString(s);
+                xmlWriter.WriteEndElement();
                 xmlWriter.WriteEndElement();
             }
             xmlWriter.WriteEndElement();
         }
-
-
-
 
 
     }

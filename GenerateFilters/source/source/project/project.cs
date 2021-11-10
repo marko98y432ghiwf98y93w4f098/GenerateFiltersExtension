@@ -9,17 +9,17 @@ using System.Text;
 
 namespace VisualStudioCppExtensions
 {
-    internal sealed partial class filter
+    public class projectUtility
     {
-        //projectActive
-        internal static Project GetActiveProject()
+        //aactive
+        public static Project GetActive()
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            var dte = Package.GetGlobalService(typeof(SDTE)) as DTE;
+            DTE dte = (DTE)Package.GetGlobalService(typeof(SDTE));
             return GetActiveProject(dte);
         }
 
-        internal static Project GetActiveProject(DTE dte)
+        public static Project GetActiveProject(DTE dte)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
             var activeSolutionProjects = dte.ActiveSolutionProjects as Array;
@@ -33,8 +33,8 @@ namespace VisualStudioCppExtensions
 
 
 
-        //projectCpp
-        private static bool IsCppProject(Project project)
+        //cpp
+        public static bool IsCpp(Project project)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
             return project != null
@@ -47,13 +47,14 @@ namespace VisualStudioCppExtensions
 
 
 
-        //projectItems
-        public IEnumerable<ProjectItem> Recurse(ProjectItems i)
+        //items
+        public static IEnumerable<ProjectItem> Recurse(ProjectItems i)
         {
             if (i != null)
             {
                 foreach (ProjectItem j in i)
                 {
+                    if (j == null) continue;
                     foreach (ProjectItem k in Recurse(j))
                     {
                         yield return k;
@@ -62,7 +63,7 @@ namespace VisualStudioCppExtensions
             }
         }
 
-        public IEnumerable<ProjectItem> Recurse(ProjectItem i)
+        public static IEnumerable<ProjectItem> Recurse(ProjectItem i)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
             yield return i;
@@ -75,18 +76,26 @@ namespace VisualStudioCppExtensions
 
 
 
+        public static string GetAssemblyLocalPathFrom(Type type) => new Uri(type.Assembly.CodeBase, UriKind.Absolute).LocalPath;
 
 
 
 
-        static private string GetAssemblyLocalPathFrom(Type type)
-        {
-            string codebase = type.Assembly.CodeBase;
-            var uri = new Uri(codebase, UriKind.Absolute);
-            return uri.LocalPath;
-        }
 
-        static private void SetAdditionalIncludeDirectories(Project project, Dictionary<string, List<string>> filesPerItemType, string projectPath)
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public static void SetAdditionalIncludeDirectories(Project project, Dictionary<string, List<string>> filesPerItemType, string projectPath)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
             if (!filesPerItemType.ContainsKey("ClInclude"))
@@ -95,7 +104,7 @@ namespace VisualStudioCppExtensions
             var includePaths = new HashSet<string> { @"$(StlIncludeDirectories)" };
             foreach (var file in filesPerItemType["ClInclude"])
             {
-                includePaths.Add(GetRelativePathIfNeeded(projectPath, Path.GetDirectoryName(file)));
+                includePaths.Add(pathUtility.GetRelativeIfNeeded(projectPath, Path.GetDirectoryName(file)));
             }
 
             string filterAssemblyInstallionPath = Path.GetDirectoryName(GetAssemblyLocalPathFrom(typeof(package2)));
