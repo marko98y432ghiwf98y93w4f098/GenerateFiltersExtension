@@ -141,7 +141,7 @@ namespace VisualStudioCppExtensions
 
                     f.group[itemType].Add((string)projectItem.Properties.Item("FullPath").Value);
                 }
-                catch (Exception e2)
+                catch (Exception)
                 {
                 }
         }

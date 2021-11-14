@@ -42,6 +42,7 @@ namespace VisualStudioCppExtensions
 
             public void propertyList(Properties p, HashSet<string> x)
             {
+                ThreadHelper.ThrowIfNotOnUIThread();
                 foreach (Property x2 in p)
                     x.Add(x2.Name);
             }
