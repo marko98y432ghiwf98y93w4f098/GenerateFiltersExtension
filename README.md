@@ -61,3 +61,4 @@ If you are interested in enhancing this extension, you must install Visual Studi
 You have to change the debug settings for the VSIXProject to be able to debug it (```Properties -> Debug```)
 - Start external program : ```C:\Program Files\Microsoft Visual Studio\2022\Preview\Common7\IDE\devenv.exe```
 - Command line arguments: ```/rootsuffix EXP```
+----
