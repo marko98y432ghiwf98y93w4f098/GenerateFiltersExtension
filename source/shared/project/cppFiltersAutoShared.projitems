@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>e85de64f-d3dc-4d22-89b7-cda7311e1335</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>cppFiltersAutoShared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)source\gui\advanced.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)source\gui\advanced.Designer.cs">
+      <DependentUpon>advanced.cs</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)source\gui\question.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)source\gui\question.Designer.cs">
+      <DependentUpon>question.cs</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)source\other.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\source\filter\filter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\source\filter\work.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\source\filter\xml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\source\other\test\test.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\source\package.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\source\project\project.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\source\project\projectData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\source\utility\path.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)resources.resx" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)source\gui\advanced.resx">
+      <DependentUpon>advanced.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)source\gui\question.resx">
+      <DependentUpon>question.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)resources\generateFiltersPackage.ico" />
+  </ItemGroup>
+</Project>

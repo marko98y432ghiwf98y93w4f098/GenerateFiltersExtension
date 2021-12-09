@@ -175,7 +175,7 @@
             this.groupBoxQuestion.Controls.Add(this.buttonAdvanced);
             this.groupBoxQuestion.Controls.Add(this.buttonYes);
             this.groupBoxQuestion.Controls.Add(this.label2);
-            this.groupBoxQuestion.Location = new System.Drawing.Point(484, 122);
+            this.groupBoxQuestion.Location = new System.Drawing.Point(605, 140);
             this.groupBoxQuestion.Name = "groupBoxQuestion";
             this.groupBoxQuestion.Size = new System.Drawing.Size(154, 100);
             this.groupBoxQuestion.TabIndex = 3;
@@ -195,7 +195,7 @@
             this.AcceptButton = this.buttonYes;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(648, 250);
+            this.ClientSize = new System.Drawing.Size(771, 250);
             this.Controls.Add(this.labelBug);
             this.Controls.Add(this.groupBoxQuestion);
             this.Controls.Add(this.labelWarning3);

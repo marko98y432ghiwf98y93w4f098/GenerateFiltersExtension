@@ -23,7 +23,15 @@ namespace VisualStudioCppExtensions
 
 
         public formQuestion() => InitializeComponent();
-        
+
+
+
+
+
+
+
+
+
 
         private void buttonYesClick(object sender, EventArgs e)
         {
@@ -36,5 +44,16 @@ namespace VisualStudioCppExtensions
             r = Result.advanced;
             this.Close();
         }
+
+
+
+        protected override bool ProcessDialogKey(Keys keyData)
+        {
+            if (Form.ModifierKeys != Keys.None || keyData != Keys.Escape) return base.ProcessDialogKey(keyData);
+            r = Result.none;
+            this.Close();
+            return true;
+        }
+
     }
 }

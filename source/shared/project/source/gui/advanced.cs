@@ -22,10 +22,6 @@ namespace VisualStudioCppExtensions
 
 
 
-
-
-
-
         public formAdvanced() { InitializeComponent(); textBoxResult.TabStop = false;}
         
 
@@ -34,7 +30,6 @@ namespace VisualStudioCppExtensions
 
         private void checkBoxRootFilterCheckedChanged(object sender, EventArgs e) => textBoxRootFilter.Enabled = checkBoxRootFilter.Checked;
         
-
 
 
 
@@ -65,11 +60,11 @@ namespace VisualStudioCppExtensions
 
 
 
-        private void buttonOkClick(object sender, EventArgs e)
-        {
-            r = Result.ok;
-            this.Close();
-        }
+
+
+
+
+
 
 
 
@@ -83,6 +78,28 @@ namespace VisualStudioCppExtensions
             d.ShowNewFolderButton = true;
             if (d.ShowDialog(this) != DialogResult.OK) return;
             textBoxRootDir.Text = d.SelectedPath;
+        }
+
+
+
+
+
+        private void buttonOkClick(object sender, EventArgs e)
+        {
+            r = Result.ok;
+            this.Close();
+        }
+
+
+
+
+
+        protected override bool ProcessDialogKey(Keys keyData)
+        {
+            if (Form.ModifierKeys != Keys.None || keyData != Keys.Escape) return base.ProcessDialogKey(keyData);
+            r = Result.none;
+            this.Close();
+            return true;
         }
     }
 

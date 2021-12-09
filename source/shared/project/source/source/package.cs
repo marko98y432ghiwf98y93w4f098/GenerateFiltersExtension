@@ -28,7 +28,7 @@ namespace VisualStudioCppExtensions
 
 
 
-        protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
+        protected override async System.Threading.Tasks.Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
             filter.Initialize(this);
             await JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
