@@ -1,59 +1,42 @@
-﻿using System;
-using System.ComponentModel.Design;
-using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.Internal.VisualStudio.PlatformUI;
-using EnvDTE;
+﻿using Microsoft.VisualStudio.VCProjectEngine;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Xml;
-using System.Reflection;
-using System.Text;
+using System.Linq;
 
 namespace VisualStudioCppExtensions
 {
     public class pathUtility
     {
 
-        public static string FindCommon(Dictionary<string, List<string>> filesPerItemType)
+        public static string pathCommon(Dictionary<string, VCFile> files)
         {
-            if (filesPerItemType == null || filesPerItemType.Count == 0)
-                return string.Empty;
+            if (files == null || files.Count == 0) return string.Empty;
 
-            var result = string.Empty;
-            foreach (var entry in filesPerItemType)
+            var s = string.Empty;
+            foreach (var f in files.Keys)
             {
-                foreach (var path in entry.Value)
+                if (f == null) return string.Empty;
+
+                if (s == string.Empty)
                 {
-                    if (path == null)
-                        return string.Empty;
-
-                    if (result == string.Empty)
-                    {
-                        result = Path.GetDirectoryName(path);
-                        continue;
-                    }
-
-                    var currentPath = Path.GetDirectoryName(path);
-                    var indexMaxEqual = 0;
-                    while (indexMaxEqual < result.Length
-                        && indexMaxEqual < currentPath.Length
-                        && result[indexMaxEqual] == currentPath[indexMaxEqual])
-                    {
-                        ++indexMaxEqual;
-                    }
-
-                    if (indexMaxEqual == 0)
-                        return string.Empty;
-
-                    if (indexMaxEqual == result.Length)
-                        continue;
-
-                    if (indexMaxEqual < result.Length)
-                        result = result.Substring(0, indexMaxEqual);
+                    s = Path.GetDirectoryName(f);
+                    continue;
                 }
+
+
+                var fd = Path.GetDirectoryName(f);
+                var i = 0;
+                while (i < s.Length
+                    && i < fd.Length
+                    && s[i] == fd[i]) i++;
+
+
+                if (i == 0) return string.Empty;
+                if (i == s.Length) continue;
+                if (i < s.Length) s = s.Substring(0, i);
             }
-            return result;
+            return s;
         }
 
 
@@ -61,7 +44,7 @@ namespace VisualStudioCppExtensions
 
 
 
-        public static HashSet<string> GenerateUniqueByFilter(ProjectData p)
+        /*public static HashSet<string> getFilterList(ProjectData p)
         {
             var result = new HashSet<string>();
 
@@ -69,52 +52,26 @@ namespace VisualStudioCppExtensions
             //filter   root
             if (p.r.filterFull)
             {
-                result.Add(p.r.filter);
-                for (var i = p.r.filter.LastIndexOf(Path.DirectorySeparatorChar); i != -1; i = p.r.filter.LastIndexOf(Path.DirectorySeparatorChar, i - 1))
-                    result.Add(p.r.filter.Substring(0, i));
+                result.Add(p.r.o.filter);
+                for (var i = p.r.o.filter.LastIndexOf(Path.DirectorySeparatorChar); i != -1; i = p.r.o.filter.LastIndexOf(Path.DirectorySeparatorChar, i - 1))
+                    result.Add(p.r.o.filter.Substring(0, i));
             }
 
 
             //filter   others
-            foreach (var fType in p.f.group)
-                foreach (var f in fType.Value)
-                {
-                    var d = Path.GetDirectoryName(f);
-                    if (d.Length <= p.r.dir.Length) continue;
-
-                    d = GetExtensionFromCommon(p.r.dir, d);
-                    result.Add(p.r.filterAppend(d));
-                    for (var i = d.LastIndexOf(Path.DirectorySeparatorChar); i != -1; i = d.LastIndexOf(Path.DirectorySeparatorChar, i - 1))
-                        result.Add(p.r.filterAppend(d.Substring(0, i)));
-                }
-
-            return result;
-        }
-
-
-
-
-
-
-
-
-        public static string GetRelativeIfNeeded(string parentPath, string file)
-        {
-            if (Path.GetPathRoot(parentPath) != Path.GetPathRoot(file))
-                return file;
-
-            var pathUri = new Uri(file);
-
-            // Folders must end in a slash
-            var formalizedUriParentPath = parentPath;
-            if (!parentPath.EndsWith(Path.DirectorySeparatorChar.ToString()))
+            foreach (var f in p.f.fileIn.Keys)
             {
-                formalizedUriParentPath += Path.DirectorySeparatorChar;
+                var d = Path.GetDirectoryName(f);
+                if (p.r.c.dir.Length >= d.Length) continue;
+
+                d = relativeDir(p.r.c.dir, d);
+                result.Add(p.r.oFilterAdd(d));
+                for (var i = d.LastIndexOf(Path.DirectorySeparatorChar); i != -1; i = d.LastIndexOf(Path.DirectorySeparatorChar, i - 1))
+                    result.Add(p.r.oFilterAdd(d.Substring(0, i)));
             }
 
-            var folderUri = new Uri(formalizedUriParentPath);
-            return Uri.UnescapeDataString(folderUri.MakeRelativeUri(pathUri).ToString().Replace('/', Path.DirectorySeparatorChar));
-        }
+            return result;
+        }*/
 
 
 
@@ -123,19 +80,37 @@ namespace VisualStudioCppExtensions
 
 
 
-        /// <summary>
-        /// predicate: commonPath.Length < path.Length
-        /// </summary>
-        public static string GetExtensionFromCommon(string commonPath, string path)
+        /*public static string relativeFile(string path, string file)
         {
-            if (commonPath.Length == path.Length) return "";
+            if (Path.GetPathRoot(path) != Path.GetPathRoot(file)) return file;
 
-            var shift = 0;
-            if (path[commonPath.Length] == Path.DirectorySeparatorChar)
-                shift = 1;
+            var fileUri = new Uri(file);
 
-            return path.Substring(commonPath.Length + shift, path.Length - (commonPath.Length + shift));
-        }
+            // Folders must end in a slash
+            if (!path.EndsWith(Path.DirectorySeparatorChar.ToString()))
+                path += Path.DirectorySeparatorChar;
+            var pathUri = new Uri(path);
+
+            return Uri.UnescapeDataString(pathUri.MakeRelativeUri(fileUri).ToString().Replace('/', Path.DirectorySeparatorChar));
+        }*/
+
+
+
+
+
+
+
+
+        
+        /*public static string relativeDir(string path, string path2)
+        {
+            if (path.Length >= path2.Length) return "";
+
+            int i = path.Length;
+            if (path2[path.Length] == Path.DirectorySeparatorChar) i++;
+
+            return path2.Substring(i);
+        }*/
 
 
 

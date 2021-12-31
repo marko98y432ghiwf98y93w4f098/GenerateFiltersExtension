@@ -23,12 +23,25 @@ namespace VisualStudioCppExtensions
 
 
         public formAdvanced() { InitializeComponent(); textBoxResult.TabStop = false;}
-        
 
 
+
+
+        private void radioButtonBold(RadioButton x) => x.Font = new Font(x.Font, x.Checked ? FontStyle.Bold : FontStyle.Regular);
+        private void radioButtonInCheckedChanged(object sender, EventArgs e)
+        {
+            bool inDir = !radioButtonInProject.Checked;
+            textBoxIn.Enabled = inDir;
+            buttonIn.Enabled = inDir;
+
+            radioButtonBold(radioButtonInProject);
+            radioButtonBold(radioButtonInDirSubDir);
+            radioButtonBold(radioButtonInDir);
+        }
 
 
         private void checkBoxRootFilterCheckedChanged(object sender, EventArgs e) => textBoxRootFilter.Enabled = checkBoxRootFilter.Checked;
+
         
 
 
@@ -43,6 +56,8 @@ namespace VisualStudioCppExtensions
                     
             try
             {
+                if (!radioButtonInProject.Checked)
+                    if (!Directory.Exists(textBoxIn.Text)) throw new Exception("in dir is not valid");
                 if (!Directory.Exists(textBoxRootDir.Text)) throw new Exception("root dir is not valid");
                 if (checkBoxRootFilter.Checked)
                     if (!ProjectData.Root.filterCheck(textBoxRootFilter.Text)) throw new Exception("root filter is not valid");
@@ -69,8 +84,17 @@ namespace VisualStudioCppExtensions
 
 
 
+        private void buttonInClick(object sender, EventArgs e)
+        {
+            FolderBrowserDialog d = dialogFolder;
+            d.RootFolder = Environment.SpecialFolder.Desktop;
+            d.SelectedPath = textBoxIn.Text;
+            d.ShowNewFolderButton = true;
+            if (d.ShowDialog(this) != DialogResult.OK) return;
+            textBoxIn.Text = d.SelectedPath;
+        }
 
-        private void buttonBrowseClick(object sender, EventArgs e)
+        private void buttonCalculateClick(object sender, EventArgs e)
         {
             FolderBrowserDialog d = dialogFolder;
             d.RootFolder = Environment.SpecialFolder.Desktop;
@@ -91,6 +115,13 @@ namespace VisualStudioCppExtensions
         }
 
 
+        public ProjectData p;
+        private void buttonCalculateFiltersDeleteAllClick(object sender, EventArgs e)
+        {
+            filters.filtersDeleteAll(p.p2);
+        }
+
+
 
 
 
@@ -101,6 +132,9 @@ namespace VisualStudioCppExtensions
             this.Close();
             return true;
         }
+
+
+        
     }
 
 

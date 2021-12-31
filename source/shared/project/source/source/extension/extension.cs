@@ -12,7 +12,7 @@ using System.Linq;
 
 namespace VisualStudioCppExtensions
 {
-    internal sealed partial class filter
+    internal sealed partial class extension
     {
         //attributes
         public const int CommandId = 0x0100;
@@ -54,7 +54,7 @@ namespace VisualStudioCppExtensions
 
 
         //init
-        public static filter Instance
+        public static extension Instance
         {
             get;
             private set;
@@ -66,21 +66,21 @@ namespace VisualStudioCppExtensions
 
         // Initializes the singleton instance of the command.      
         /// <param name="package">Owner package, not null.</param>
-        public static void Initialize(Package package) => Instance = new filter(package);
+        public static void Initialize(Package package) => Instance = new extension(package);
         
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="filter"/> class.
+        /// Initializes a new instance of the <see cref="extension"/> class.
         /// Adds our command handlers for menu (commands must exist in the command table file)
         /// </summary>
         /// <param name="package">Owner package, not null.</param>
-        private filter(Package package)
+        private extension(Package package)
         {
             if (package == null) throw new ArgumentNullException("package");
             this.package = package;
 
 
-            OleMenuCommandService commandService = this.packageIServiceProvider.GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
+            OleMenuCommandService commandService = (OleMenuCommandService)this.packageIServiceProvider.GetService(typeof(IMenuCommandService));
             if (commandService == null) return;
 
             var menuItem = new OleMenuCommand(this.MenuItemCallback, new CommandID(menuGroup, CommandId));

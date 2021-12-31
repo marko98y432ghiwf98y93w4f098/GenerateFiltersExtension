@@ -11,22 +11,20 @@ namespace VisualStudioCppExtensions
 {
     public class projectUtility
     {
-        //aactive
+        //active
         public static Project GetActive()
         {
             ThreadHelper.ThrowIfNotOnUIThread();
             DTE dte = (DTE)Package.GetGlobalService(typeof(SDTE));
-            return GetActiveProject(dte);
+            return GetActive(dte);
         }
 
-        public static Project GetActiveProject(DTE dte)
+        public static Project GetActive(DTE dte)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            var activeSolutionProjects = dte.ActiveSolutionProjects as Array;
-            if (activeSolutionProjects == null || activeSolutionProjects.Length == 0)
-                return null;
-
-            return activeSolutionProjects.GetValue(0) as Project;
+            object[] x = (object[])dte.ActiveSolutionProjects;
+            if (x == null || x.Length == 0) return null;
+            return (Project)x[0];
         }
 
 
@@ -48,35 +46,26 @@ namespace VisualStudioCppExtensions
 
 
         //items
-        public static IEnumerable<ProjectItem> Recurse(ProjectItems i)
-        {
-            if (i != null)
-            {
-                foreach (ProjectItem j in i)
-                {
-                    if (j == null) continue;
-                    foreach (ProjectItem k in Recurse(j))
-                    {
-                        yield return k;
-                    }
-                }
-            }
-        }
-
-        public static IEnumerable<ProjectItem> Recurse(ProjectItem i)
+        private static IEnumerable<ProjectItem> items(ProjectItem i)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
             yield return i;
-            foreach (var j in Recurse(i.ProjectItems))
-            {
-                yield return j;
-            }
+            foreach (var i2 in items(i.ProjectItems))
+                yield return i2;
+        }
+
+        public static IEnumerable<ProjectItem> items(ProjectItems i)
+        {
+            if (i != null)
+                foreach (ProjectItem i2 in i)
+                    if (i2 != null)
+                        foreach (ProjectItem i3 in items(i2))
+                            yield return i3;
         }
 
 
 
 
-        public static string GetAssemblyLocalPathFrom(Type type) => new Uri(type.Assembly.CodeBase, UriKind.Absolute).LocalPath;
 
 
 
@@ -90,12 +79,13 @@ namespace VisualStudioCppExtensions
 
 
 
+        //public static string GetAssemblyLocalPathFrom(Type type) => new Uri(type.Assembly.CodeBase, UriKind.Absolute).LocalPath;
 
 
 
 
 
-        public static void SetAdditionalIncludeDirectories(Project project, Dictionary<string, List<string>> filesPerItemType, string projectPath)
+        /*public static void SetAdditionalIncludeDirectories(Project project, Dictionary<string, List<string>> filesPerItemType, string projectPath)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
             if (!filesPerItemType.ContainsKey("ClInclude"))
@@ -138,7 +128,7 @@ namespace VisualStudioCppExtensions
                     }
                 }
             }
-        }
+        }*/
 
 
 

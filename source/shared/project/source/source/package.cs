@@ -30,7 +30,7 @@ namespace VisualStudioCppExtensions
 
         protected override async System.Threading.Tasks.Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
-            filter.Initialize(this);
+            extension.Initialize(this);
             await JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
         }
     }

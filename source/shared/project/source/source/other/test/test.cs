@@ -17,7 +17,7 @@ using System.Linq;
 
 namespace VisualStudioCppExtensions
 {
-    internal sealed partial class filter
+    internal sealed partial class extension
     {
 
         public class test
@@ -35,6 +35,13 @@ namespace VisualStudioCppExtensions
 
             //KInd     VCProjectReference
             //VCReferenceType     4,     VCProjectReference
+
+
+            //IVCCollection c = (IVCCollection) p.p2.Filters;          //Microsoft.VisualStudio.Project.VisualC.VCProjectEngine.VCCollectionShim
+            //VCFilter c2 in c          //Microsoft.VisualStudio.Project.VisualC.VCProjectEngine.VCFilterShim
+            //VCFile:ProjectItem c3 in (IVCCollection) c2.Files          //Microsoft.VisualStudio.Project.VisualC.VCProjectEngine.VCCollectionShim
+
+
 
 
 
@@ -90,6 +97,15 @@ namespace VisualStudioCppExtensions
                         string s2 = o3.Name;
                         string s3 = o3.ItemName;
                     }
+                }*/
+
+
+
+
+                //projectItem
+                /*{
+                    string o = (string)projectItem.Name;
+                    string p = ((VCProject)projectItem.Properties.Item("project").Object).Name;
                 }*/
             }
 

@@ -22,7 +22,13 @@ namespace VisualStudioCppExtensions
 
 
 
-        public formQuestion() => InitializeComponent();
+        public formQuestion()
+        {
+            InitializeComponent();
+            int x = this.Height;
+            MinimumSize = new Size(Width, Height);
+            MaximumSize = new Size(Width * 10, Height);
+        }
 
 
 
