@@ -6,37 +6,59 @@ using System.Linq;
 
 namespace VisualStudioCppExtensions
 {
-    public class pathUtility
+    
+
+    public class path
     {
+        public string x;
+        public string[] x2;
 
-        public static string pathCommon(Dictionary<string, VCFile> files)
+
+
+        public class Separator
         {
-            if (files == null || files.Count == 0) return string.Empty;
+            public char[] s = ss;
+            public char s2 = ss2;
 
-            var s = string.Empty;
-            foreach (var f in files.Keys)
-            {
-                if (f == null) return string.Empty;
-
-                if (s == string.Empty)
-                {
-                    s = Path.GetDirectoryName(f);
-                    continue;
-                }
+            public static char[] ss = new char[] { System.IO.Path.DirectorySeparatorChar, System.IO.Path.AltDirectorySeparatorChar };
+            public static char ss2 = System.IO.Path.DirectorySeparatorChar;
+            public static Separator sDefault = new path.Separator() { s = new char[] { '\\', '/' }, s2 = '\\' };
+        }
+        public Separator s = new Separator();
 
 
-                var fd = Path.GetDirectoryName(f);
-                var i = 0;
-                while (i < s.Length
-                    && i < fd.Length
-                    && s[i] == fd[i]) i++;
 
 
-                if (i == 0) return string.Empty;
-                if (i == s.Length) continue;
-                if (i < s.Length) s = s.Substring(0, i);
-            }
-            return s;
+
+
+
+
+
+
+
+
+        public path(string x = null, Separator s = null)
+        {
+            this.s = s ?? new Separator();
+            if (x != null) init(x);
+        }
+
+        public path(string[] x2, Separator s = null)
+        {
+            this.s = s ?? new Separator();
+            this.x2 = x2;
+            if (x2 != null) xJoin();
+        }
+
+
+        public path init(string x)
+        {
+            x2 = new string[0];
+            if (x != null)
+                x2 = x.Split(s.s, StringSplitOptions.RemoveEmptyEntries).Select(x3 => x3.Trim()).Where(x3 => x3.xFull()).ToArray();
+            xJoin();
+
+            return this;
         }
 
 
@@ -44,34 +66,6 @@ namespace VisualStudioCppExtensions
 
 
 
-        /*public static HashSet<string> getFilterList(ProjectData p)
-        {
-            var result = new HashSet<string>();
-
-
-            //filter   root
-            if (p.r.filterFull)
-            {
-                result.Add(p.r.o.filter);
-                for (var i = p.r.o.filter.LastIndexOf(Path.DirectorySeparatorChar); i != -1; i = p.r.o.filter.LastIndexOf(Path.DirectorySeparatorChar, i - 1))
-                    result.Add(p.r.o.filter.Substring(0, i));
-            }
-
-
-            //filter   others
-            foreach (var f in p.f.fileIn.Keys)
-            {
-                var d = Path.GetDirectoryName(f);
-                if (p.r.c.dir.Length >= d.Length) continue;
-
-                d = relativeDir(p.r.c.dir, d);
-                result.Add(p.r.oFilterAdd(d));
-                for (var i = d.LastIndexOf(Path.DirectorySeparatorChar); i != -1; i = d.LastIndexOf(Path.DirectorySeparatorChar, i - 1))
-                    result.Add(p.r.oFilterAdd(d.Substring(0, i)));
-            }
-
-            return result;
-        }*/
 
 
 
@@ -80,21 +74,9 @@ namespace VisualStudioCppExtensions
 
 
 
-        /*public static string relativeFile(string path, string file)
-        {
-            if (Path.GetPathRoot(path) != Path.GetPathRoot(file)) return file;
-
-            var fileUri = new Uri(file);
-
-            // Folders must end in a slash
-            if (!path.EndsWith(Path.DirectorySeparatorChar.ToString()))
-                path += Path.DirectorySeparatorChar;
-            var pathUri = new Uri(path);
-
-            return Uri.UnescapeDataString(pathUri.MakeRelativeUri(fileUri).ToString().Replace('/', Path.DirectorySeparatorChar));
-        }*/
 
 
+        public string xJoin() => x = string.Join(s.s2.ToString(), x2);
 
 
 
@@ -102,19 +84,178 @@ namespace VisualStudioCppExtensions
 
 
         
-        /*public static string relativeDir(string path, string path2)
+
+
+
+
+
+
+
+
+        public string sLast { get => x2.xEmpty() ? null : x2[x2.Length - 1]; }
+        public int count { get => x2.xEmpty() ? 0 : x2.Length; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public static path operator +(path x1, path x2) => path.oPlus(x1, x2);
+        public static path operator +(path x1, string x2) => path.oPlus(x1, x2);
+        public static path operator -(path x1, path x2) => path.oMinus(x1, x2);
+        public static path operator *(path x1, path x2) => path.oCommon(x1, x2);
+        /*public static bool operator ==(path x1, path x2) => path.oEqual(x1, x2);
+        public static bool operator !=(path x1, path x2) => !path.oEqual(x1, x2);*/
+
+
+        public static path oPlus(path x1, path x2, Separator s = null)
         {
-            if (path.Length >= path2.Length) return "";
+            if (x1.xNull()) return null;
+            if (x2.xNull()) return null;
+            if (s == null) s = new Separator();
 
-            int i = path.Length;
-            if (path2[path.Length] == Path.DirectorySeparatorChar) i++;
+            return new path(x1.x2.Concat(x2.x2).ToArray(), s);
+        }
 
-            return path2.Substring(i);
-        }*/
+        public static path oPlus(path x1, string x2, Separator s = null)
+        {
+            if (x1.xNull()) return null;
+            if (!x2.xFull()) return new path(x1.x2, x1.s);          //clone
+            if (s == null) s = new Separator();
+
+            return new path(x1.x2.Append(x2).ToArray(), s);
+        }
+
+
+
+        public static path oMinus(path x1, path x2, Separator s = null)
+        {
+            if (x1.xNull()) return null;
+            if (x2.xNull()) return null;
+            if (s == null) s = new Separator();
+
+            if (!(x1.x2.Length >= x2.x2.Length)) return null;
+
+            for (int i = 0; i < x2.x2.Length; i++)
+                if (string.Compare(x1.x2[i], x2.x2[i], StringComparison.OrdinalIgnoreCase) != 0) return null;
+
+            return new path(x1.x2.Skip(x2.x2.Length).ToArray(), s);
+        }
+
+
+        
+
+
+
+        public static path oCommon(path x1, path x2, Separator s = null)
+        {
+            //check
+            if (x1.xNull()) return null;
+            if (x2.xNull()) return null;
+            //s ??= new Separator();
+            if (s == null) s = new Separator();
+
+
+
+            int i = 0;
+            {
+                int i1 = Math.Min(x1.x2.Length, x2.x2.Length);
+                for (; i < i1; i++)
+                    if (String.Compare(x1.x2[i], x2.x2[i], StringComparison.OrdinalIgnoreCase) != 0) break;
+            }
+
+            return new path(x1.x2.Take(i).ToArray(), s);
+        }
+
+
+
+
+        //common
+        public static path oCommon(string[] p, Separator s = null)
+        {
+            //check
+            if (p.xEmpty()) return null;
+            if (s == null) s = new Separator();
+
+            
+
+            path x = null;
+            foreach (string p2 in p)
+            {
+                if (x == null)
+                {
+                    x = new path(p2, s);
+                    continue;
+                }
+                x = oCommon(x, new path(p2, s), s);
+                if (x == null) break;
+                if (x.x2.Length == 0) break;
+            }
+
+            return x;
+        }
 
 
 
 
 
+        public static bool oEqual(path x1, path x2)
+        {
+            bool b1 = !x1.xNull();
+            bool b2 = !x2.xNull();
+            if (!(b1 || b2)) return true;
+            if (b1 ^ b2) return false;
+            return x1.x.xC2(x2.x);
+        }
+
+
+
+
+
+
+
+
+
+
+        public path mUp()
+        {
+            if (x2.xEmpty()) return null;
+            int i = x2.Length - 1;
+            if (i < 0) return null;
+            return new path(x2.Take(i).ToArray(), s);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+        //interface
+        public override int GetHashCode() => x?.ToLower().GetHashCode() ?? 0; 
+
+        public override bool Equals(object x)
+        {
+            if (x == null) return false;
+            if (!(x is path)) return false;
+            return path.oEqual(this, (path)x);
+        }
+
+        public override string ToString() => x;
     }
 }
+
+

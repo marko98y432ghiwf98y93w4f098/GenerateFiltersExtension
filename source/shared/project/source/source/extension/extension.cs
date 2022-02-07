@@ -14,11 +14,7 @@ namespace VisualStudioCppExtensions
 {
     internal sealed partial class extension
     {
-        //attributes
-        public const int CommandId = 0x0100;
-        public static readonly Guid menuGroup = new Guid("acd8036f-19ae-43b2-a2d6-11788cb282fe");
-        private readonly Package package;
-
+        
 
 
 
@@ -27,10 +23,10 @@ namespace VisualStudioCppExtensions
 
 
         //error box
-        private void ErrorMessageBox(string errorMessage)
+        private void ErrorMessageBox(string m)
         {
-            VsShellUtilities.ShowMessageBox(this.packageIServiceProvider,
-                                            errorMessage,
+            VsShellUtilities.ShowMessageBox(package,
+                                            m,
                                             string.Empty,
                                             OLEMSGICON.OLEMSGICON_CRITICAL,
                                             OLEMSGBUTTON.OLEMSGBUTTON_OK,
@@ -53,40 +49,49 @@ namespace VisualStudioCppExtensions
 
 
 
-        //init
-        public static extension Instance
-        {
-            get;
-            private set;
-        }
-
-        // Gets the service provider from the owner package.
-        private IServiceProvider packageIServiceProvider { get => this.package; }
+        //init   package
+        private readonly Package package;
+        //private IServiceProvider packageIServiceProvider { get => this.package; }
 
 
-        // Initializes the singleton instance of the command.      
-        /// <param name="package">Owner package, not null.</param>
+
+        //init   extension
+        public static extension Instance { get; private set; }
         public static void Initialize(Package package) => Instance = new extension(package);
-        
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="extension"/> class.
-        /// Adds our command handlers for menu (commands must exist in the command table file)
-        /// </summary>
-        /// <param name="package">Owner package, not null.</param>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //adds command handlers for menu.button, commands must exist in the command table file
         private extension(Package package)
         {
             if (package == null) throw new ArgumentNullException("package");
             this.package = package;
 
 
-            OleMenuCommandService commandService = (OleMenuCommandService)this.packageIServiceProvider.GetService(typeof(IMenuCommandService));
-            if (commandService == null) return;
 
-            var menuItem = new OleMenuCommand(this.MenuItemCallback, new CommandID(menuGroup, CommandId));
-            menuItem.BeforeQueryStatus += OnBeforeQueryStatusCallBack;
 
-            commandService.AddCommand(menuItem);
+            OleMenuCommandService x = (OleMenuCommandService)((IServiceProvider)package).GetService(typeof(IMenuCommandService));
+            if (x == null) return;
+
+
+            x.AddCommand(new OleMenuCommand(this.buttonClick, null, this.buttonBeforeQueryStatus, new CommandID(package2.gui.groupGuid, package2.gui.buttonId)));
+            x.AddCommand(new OleMenuCommand(this.button2Click, null, this.buttonBeforeQueryStatus, new CommandID(package2.gui.groupGuid, package2.gui.button2Id)));
         }
 
 

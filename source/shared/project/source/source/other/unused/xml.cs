@@ -71,5 +71,65 @@ namespace VisualStudioCppExtensions
         }*/
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*
+            //calculate
+            //project   unload
+            p.p.DTE.ExecuteCommand("Project.UnloadProject");
+
+
+
+            //write
+            {
+                XmlWriter xmlWriter = XmlWriter.Create(p.fileName + ".filters", new XmlWriterSettings() { Indent = true });
+                xmlWriter.WriteStartElement("Project");
+                xmlWriter.WriteAttributeString("ToolsVersion", "4.0");
+                xmlWriter.WriteAttributeString("Project", "xmlns", null, @"http://schemas.microsoft.com/developer/msbuild/2003");
+
+                WriteFilter(xmlWriter, pathUtility.getFilterList(p));
+                foreach (var x in p.f.group)
+                    WriteSources(xmlWriter, x.Key, x.Value, p);
+
+                xmlWriter.WriteEndElement();
+                xmlWriter.Close();
+            }
+
+
+
+            //project   reload
+            p.p.DTE.ExecuteCommand("Project.ReloadProject");
+            */
+
+
+
+
+
+
+
     }
 }

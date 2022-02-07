@@ -1,6 +1,6 @@
 ﻿namespace VisualStudioCppExtensions
 {
-    partial class formQuestion
+    partial class formQuestionFtd
     {
         /// <summary>
         /// Required designer variable.
@@ -28,9 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formQuestion));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formQuestionFtd));
             this.buttonYes = new System.Windows.Forms.Button();
-            this.buttonAdvanced = new System.Windows.Forms.Button();
             this.labelQuestion = new System.Windows.Forms.Label();
             this.labelInfoProject2 = new System.Windows.Forms.Label();
             this.labelQuestionMark = new System.Windows.Forms.Label();
@@ -48,13 +47,16 @@
             this.labelInfoOut = new System.Windows.Forms.Label();
             this.labelInfoIn2 = new System.Windows.Forms.Label();
             this.labelWarning4 = new System.Windows.Forms.Label();
+            this.labelWarning5 = new System.Windows.Forms.Label();
+            this.labelWarning6 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBoxQuestion.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonYes
             // 
             this.buttonYes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonYes.Location = new System.Drawing.Point(51, 57);
+            this.buttonYes.Location = new System.Drawing.Point(51, 13);
             this.buttonYes.Name = "buttonYes";
             this.buttonYes.Size = new System.Drawing.Size(88, 35);
             this.buttonYes.TabIndex = 0;
@@ -62,25 +64,15 @@
             this.buttonYes.UseVisualStyleBackColor = true;
             this.buttonYes.Click += new System.EventHandler(this.buttonYesClick);
             // 
-            // buttonAdvanced
-            // 
-            this.buttonAdvanced.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonAdvanced.Location = new System.Drawing.Point(51, 16);
-            this.buttonAdvanced.Name = "buttonAdvanced";
-            this.buttonAdvanced.Size = new System.Drawing.Size(88, 35);
-            this.buttonAdvanced.TabIndex = 1;
-            this.buttonAdvanced.Text = "advanced";
-            this.buttonAdvanced.UseVisualStyleBackColor = true;
-            this.buttonAdvanced.Click += new System.EventHandler(this.buttonAdvancedClick);
-            // 
             // labelQuestion
             // 
             this.labelQuestion.AutoSize = true;
             this.labelQuestion.Location = new System.Drawing.Point(12, 9);
             this.labelQuestion.Name = "labelQuestion";
-            this.labelQuestion.Size = new System.Drawing.Size(487, 13);
+            this.labelQuestion.Size = new System.Drawing.Size(511, 13);
             this.labelQuestion.TabIndex = 2;
-            this.labelQuestion.Text = "Do you want to automatically generate (directoryTree => filterTree) filters for:";
+            this.labelQuestion.Text = "Do you want to automatically generate (filterTree => directoryTree) directories f" +
+    "or:";
             // 
             // labelInfoProject2
             // 
@@ -95,7 +87,7 @@
             // 
             this.labelQuestionMark.AutoSize = true;
             this.labelQuestionMark.Font = new System.Drawing.Font("Consolas", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelQuestionMark.Location = new System.Drawing.Point(6, 16);
+            this.labelQuestionMark.Location = new System.Drawing.Point(6, 8);
             this.labelQuestionMark.Name = "labelQuestionMark";
             this.labelQuestionMark.Size = new System.Drawing.Size(39, 43);
             this.labelQuestionMark.TabIndex = 2;
@@ -115,21 +107,21 @@
             // 
             this.labelInfoCalculate2.AutoSize = true;
             this.labelInfoCalculate2.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelInfoCalculate2.Location = new System.Drawing.Point(121, 86);
+            this.labelInfoCalculate2.Location = new System.Drawing.Point(103, 86);
             this.labelInfoCalculate2.Name = "labelInfoCalculate2";
-            this.labelInfoCalculate2.Size = new System.Drawing.Size(55, 13);
+            this.labelInfoCalculate2.Size = new System.Drawing.Size(73, 13);
             this.labelInfoCalculate2.TabIndex = 2;
-            this.labelInfoCalculate2.Text = "rootDir:";
+            this.labelInfoCalculate2.Text = "rootFilter:";
             // 
             // labelInfoOut2
             // 
             this.labelInfoOut2.AutoSize = true;
             this.labelInfoOut2.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelInfoOut2.Location = new System.Drawing.Point(103, 108);
+            this.labelInfoOut2.Location = new System.Drawing.Point(121, 108);
             this.labelInfoOut2.Name = "labelInfoOut2";
-            this.labelInfoOut2.Size = new System.Drawing.Size(73, 13);
+            this.labelInfoOut2.Size = new System.Drawing.Size(55, 13);
             this.labelInfoOut2.TabIndex = 2;
-            this.labelInfoOut2.Text = "rootFilter:";
+            this.labelInfoOut2.Text = "rootDir:";
             // 
             // labelInfoOut3
             // 
@@ -161,13 +153,12 @@
             // groupBoxQuestion
             // 
             this.groupBoxQuestion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBoxQuestion.Controls.Add(this.buttonAdvanced);
             this.groupBoxQuestion.Controls.Add(this.buttonYes);
             this.groupBoxQuestion.Controls.Add(this.labelQuestionMark);
-            this.groupBoxQuestion.Location = new System.Drawing.Point(437, 114);
+            this.groupBoxQuestion.Location = new System.Drawing.Point(437, 230);
             this.groupBoxQuestion.Name = "groupBoxQuestion";
-            this.groupBoxQuestion.Size = new System.Drawing.Size(154, 100);
-            this.groupBoxQuestion.TabIndex = 3;
+            this.groupBoxQuestion.Size = new System.Drawing.Size(154, 56);
+            this.groupBoxQuestion.TabIndex = 30;
             this.groupBoxQuestion.TabStop = false;
             // 
             // labelWarning2
@@ -175,14 +166,14 @@
             this.labelWarning2.AutoSize = true;
             this.labelWarning2.Location = new System.Drawing.Point(82, 165);
             this.labelWarning2.Name = "labelWarning2";
-            this.labelWarning2.Size = new System.Drawing.Size(319, 13);
+            this.labelWarning2.Size = new System.Drawing.Size(349, 13);
             this.labelWarning2.TabIndex = 4;
-            this.labelWarning2.Text = "Please save the project before using this extension.";
+            this.labelWarning2.Text = "1.   Please save the project before using this extension.";
             // 
             // labelWarning3
             // 
             this.labelWarning3.AutoSize = true;
-            this.labelWarning3.Location = new System.Drawing.Point(82, 184);
+            this.labelWarning3.Location = new System.Drawing.Point(82, 182);
             this.labelWarning3.Name = "labelWarning3";
             this.labelWarning3.Size = new System.Drawing.Size(349, 13);
             this.labelWarning3.TabIndex = 5;
@@ -231,18 +222,48 @@
             // labelWarning4
             // 
             this.labelWarning4.AutoSize = true;
-            this.labelWarning4.Location = new System.Drawing.Point(82, 201);
+            this.labelWarning4.Location = new System.Drawing.Point(82, 199);
             this.labelWarning4.Name = "labelWarning4";
             this.labelWarning4.Size = new System.Drawing.Size(151, 13);
             this.labelWarning4.TabIndex = 10;
             this.labelWarning4.Text = "and open last save point";
             // 
-            // formQuestion
+            // labelWarning5
+            // 
+            this.labelWarning5.AutoSize = true;
+            this.labelWarning5.Location = new System.Drawing.Point(82, 224);
+            this.labelWarning5.Name = "labelWarning5";
+            this.labelWarning5.Size = new System.Drawing.Size(295, 13);
+            this.labelWarning5.TabIndex = 11;
+            this.labelWarning5.Text = "2.   #include directives  may need to be changed";
+            // 
+            // labelWarning6
+            // 
+            this.labelWarning6.AutoSize = true;
+            this.labelWarning6.Location = new System.Drawing.Point(82, 249);
+            this.labelWarning6.Name = "labelWarning6";
+            this.labelWarning6.Size = new System.Drawing.Size(295, 13);
+            this.labelWarning6.TabIndex = 12;
+            this.labelWarning6.Text = "3.   this extension will access your fileSystem:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(82, 266);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(271, 13);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "move project files, delete empty directories";
+            // 
+            // formQuestionFtd
             // 
             this.AcceptButton = this.buttonYes;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(599, 221);
+            this.ClientSize = new System.Drawing.Size(599, 293);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelWarning6);
+            this.Controls.Add(this.labelWarning5);
             this.Controls.Add(this.labelWarning4);
             this.Controls.Add(this.labelInfoIn2);
             this.Controls.Add(this.labelInfoOut);
@@ -263,7 +284,7 @@
             this.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "formQuestion";
+            this.Name = "formQuestionFtd";
             this.groupBoxQuestion.ResumeLayout(false);
             this.groupBoxQuestion.PerformLayout();
             this.ResumeLayout(false);
@@ -290,7 +311,9 @@
         public System.Windows.Forms.Label labelInfoOut;
         public System.Windows.Forms.Label labelInfoIn2;
         public System.Windows.Forms.Label labelWarning4;
-        public System.Windows.Forms.Button buttonAdvanced;
         public System.Windows.Forms.GroupBox groupBoxQuestion;
+        public System.Windows.Forms.Label labelWarning5;
+        public System.Windows.Forms.Label labelWarning6;
+        public System.Windows.Forms.Label label1;
     }
 }
