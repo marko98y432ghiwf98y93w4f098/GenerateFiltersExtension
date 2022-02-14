@@ -100,10 +100,18 @@ namespace VisualStudioCppExtensions
                 private void check2(filter x, error e)
                 {
                     //chars
-                    bool b = true;
-                    foreach (char c in checkC)
-                        if (x.xn2.Contains(c)) { b = false; break; }
-                    if (!b) e.add(new error.data() { t = error.Type.dirName, s = new string[] { x.xn.x } });
+                    if (x.xn2 != null)
+                    {
+                        bool b = true;
+                        foreach (char c in checkC)
+                            if (x.xn2.Contains(c)) { b = false; break; }
+                        if (!b) e.add(new error.data() { t = error.Type.dirName, s = new string[] { x.xn.x } });
+                    }
+
+
+                    //exist   file
+                    foreach (var x3 in x.o.files.Where(x2 => !File.Exists(x2.Key)))
+                        e.add(new error.data() { t = error.Type.existFile, s = new string[] { "path:     " + x3.Key, "filter:   " + dir.file2.fileRelative(x3.Value).x } });
 
                     //same   file
                     foreach (var x3 in x.o.files.GroupBy(x2 => dir.file2.fileRelative(x2.Value).x.ToLower()).Where(x2 => x2.Count() > 1))
@@ -118,11 +126,8 @@ namespace VisualStudioCppExtensions
                         check2(x2, e);
                 }
 
-                public void check(error e)
-                {
-                    foreach (filter x in f2.f.o.filters2)
-                        check2(x, e);
-                }
+                public void check(error e) => check2(f2.f, e);
+
             }
             public Files f = new Files();
 
@@ -264,37 +269,48 @@ namespace VisualStudioCppExtensions
 
                     public class Configuration
                     {
+                        public string itemType;
+                        //public string contentType;          //contentType   can not be empty string or start with null char
                         public eFileType fileType;
+
                         public bool deploymentContent;
                         //public string customTool;
                         //public bool includedInProject;
 
                         public bool document = false;
-                        public string dGuid;
+
                         public Configuration(VCFile x)
                         {
+                            itemType = x.ItemType;
+                            //contentType = x.ContentType;
                             fileType = x.FileType;
+
                             deploymentContent = x.DeploymentContent;
                             //customTool = x.CustomTool;
+                            //includedInProject
 
-                            ProjectItem x2 = (ProjectItem)x.Object;
-                            //if (!x2.Saved) x2.Save();          notImplemented
-                            Document x3 = x2.Document;
-                            if (x3 != null)
+                            Document x2 = ((ProjectItem)x.Object).Document;
+                            if (x2 != null)
                             {
                                 document = true;
-                                dGuid = x3.Kind;
+                                x2.Close();          //if (!x2.Saved) x2.Save();          notImplemented
                             }
                         }
                         public void set(VCFile x)
                         {
                             if (x == null) return;
+
+                            x.ItemType = itemType;
+                            //x.ContentType = contentType;
                             x.FileType = fileType;
+
                             x.DeploymentContent = deploymentContent;
                             //x.CustomTool = customTool;          notImplemented
-
-                            ProjectItem x2 = (ProjectItem)x.Object;
-                            if (document) x2.Open();
+                            //includedInProject
+                            
+                            if (document)
+                                try { ((ProjectItem)x.Object).DTE.Documents.Open(x.FullPath); }          //((ProjectItem)x.Object).Open(Document.Kind   {8E7B96A8-E33D-11D0-A6D5-00C04FB67F6A}   );
+                                catch (Exception) { }
                         }
                     }
 
@@ -333,16 +349,17 @@ namespace VisualStudioCppExtensions
                     {
                         if (File.Exists(p2.x)) return false;
 
-                        object o = f.xp.x;
-                        bool b = o != null;
+                        VCFilter x = f.xp.x;
+                        bool b = x != null;
+                        path p3 = p2;
 
                         Configuration c = new Configuration(f.x);
                         {
-                            if (b) ((VCFilter)o).RemoveFile(f.x); else p.p.p.RemoveFile(f.x);
+                            if (b) x.RemoveFile(f.x); else p.p.p.RemoveFile(f.x);
                             {
-                                if (!file2.move(p1, p2, e)) p2 = p1;
+                                if (!file2.move(p1, p2, e)) p3 = p1;
                             }
-                            f.x = (VCFile)(b ? ((VCFilter)o).AddFile(p2.x) : p.p.p.AddFile(p2.x));
+                            f.x = (VCFile)(b ? x.AddFile(p3.x) : p.p.p.AddFile(p3.x));
                         }
                         c.set(f.x);
                         return true;
@@ -538,6 +555,15 @@ namespace VisualStudioCppExtensions
                         LinkedList<file2> x1 = new LinkedList<file2>();
                         file2.filesGet(root, p.f.f2.f, ref x1);
                         x = x1.ToArray();
+                        //error
+                        /*{
+                            file2[] x4 = x.Where(x3 => !((ProjectItem)x3.f.x.Object).).ToArray();
+                            if (x4.Length > 0)
+                            {
+                                e.add(new error.data() { t = error.Type.fileSaved, s = x4.Select(x3 => x3.p1.x).ToArray() });
+                                return;
+                            }
+                        }*/
                     }
 
                     HashSet<dir2> x2 = new HashSet<dir2>();

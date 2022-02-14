@@ -14,7 +14,7 @@ namespace VisualStudioCppExtensions
 
         public class error
         {
-            public enum Type { move, delete, dirName, sameFile, sameFilter };
+            public enum Type { move, delete, dirName, sameFile, sameFilter, existFile/*, fileSaved*/ };
 
 
 
@@ -66,11 +66,22 @@ namespace VisualStudioCppExtensions
                             s2 += "\r\nfilter contains multiple filters with the same name,  please rename or move them:";
                             s2 += "\r\n" + x2.s[0];
                             break;
+
+                        case Type.existFile:
+                            s2 += "\r\nfile path, included in project, does not exist:";
+                            s2 += "\r\n" + x2.s[0];
+                            s2 += "\r\n" + x2.s[1];
+                            break;
+                        /*case Type.fileSaved:
+                            s2 += "\r\nfiles that need to be moved are opened in editor, changed, but not saved.  Please save or discard (close without save).";
+                            foreach (string s3 in x2.s)
+                                s2 += "\r\n" + s3;
+                            break;*/
                     }
 
-                    if (x2.e != null) s.Append("\r\n\r\nexception:  [" + x2.e.Message + "]");
 
                     s.Append(s2);
+                    if (x2.e != null) s.Append("\r\n\r\nexception:  [" + x2.e.Message + "]");
                     if (i < x.Count - 1) s.Append("\r\n\r\n\r\n\r\n");
                 }
 

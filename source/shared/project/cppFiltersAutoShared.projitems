@@ -53,12 +53,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)source\source\extension\filterToDir\filters.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)source\source\extension\filterToDir\projectData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)source\source\extension\filterToDir\work.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\source\other\test\dte\document.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\source\other\test\dte\dte.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)source\source\other\test\dte\project.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)source\source\other\test\dte\projectItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)source\source\other\test\other.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)source\source\other\test\vc\file.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)source\source\other\test\vc\filter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)source\source\other\test\vc\project.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\source\other\test\vc\projectEngine.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)source\source\other\test\vc\projectReference.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)source\source\other\unused\project.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)source\source\other\unused\xml.cs" />

@@ -23,6 +23,7 @@ namespace VisualStudioCppExtensions
         //callback
         void buttonBeforeQueryStatus(object sender, EventArgs e)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
             OleMenuCommand x = (OleMenuCommand)sender;
             if (x == null) return;
 
@@ -74,8 +75,8 @@ namespace VisualStudioCppExtensions
         private void buttonClick(object sender, EventArgs e)
         {
             //projectData
-            dirToFilter.ProjectData p = new dirToFilter.ProjectData();
             ThreadHelper.ThrowIfNotOnUIThread();
+            dirToFilter.ProjectData p = new dirToFilter.ProjectData();
             p.p = projectUtility.GetActive();
 
 

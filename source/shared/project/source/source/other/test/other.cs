@@ -36,8 +36,6 @@ namespace VisualStudioCppExtensions
 
 
 
-
-
         public static void pathSeparator()
         {
             //DirectorySeparatorChar          \

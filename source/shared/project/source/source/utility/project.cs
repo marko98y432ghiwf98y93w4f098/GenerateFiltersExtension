@@ -11,16 +11,18 @@ namespace VisualStudioCppExtensions
 {
     public class projectUtility
     {
-        //active
-        public static Project GetActive()
-        {
-            ThreadHelper.ThrowIfNotOnUIThread();
-            return GetActive((DTE)Package.GetGlobalService(typeof(SDTE)));
-        }
+        //dte
+        public static DTE dte => (DTE)Package.GetGlobalService(typeof(SDTE));
+
+
+
+
+        //project   active
+        public static Project GetActive() => GetActive(dte);
+
 
         public static Project GetActive(DTE dte)
         {
-            ThreadHelper.ThrowIfNotOnUIThread();
             object[] x = (object[])dte.ActiveSolutionProjects;
             if (x.xEmpty()) return null;
             return (Project)x[0];
@@ -32,13 +34,7 @@ namespace VisualStudioCppExtensions
 
 
 
-
-
-
-
-
-
-        //cpp
+        //project   cpp
         public static bool IsCpp(Project project)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
@@ -46,6 +42,39 @@ namespace VisualStudioCppExtensions
                    && (project.CodeModel.Language == CodeModelLanguageConstants.vsCMLanguageMC
                        || project.CodeModel.Language == CodeModelLanguageConstants.vsCMLanguageVC);
         }
+
+
+
+
+
+
+
+
+
+
+
+        //documents
+        public static void documentsRefresh()          //push   document tab lazy open
+        {
+            foreach (Document x4 in dte.Documents) { }
+        }
+
+
+        public static void documentActivate(string x)          //push   document tab lazy open
+        {
+            if (x == null) return;
+            {
+                Document x2 = dte.ActiveDocument;
+                if (x2?.Name == x) return;
+            }
+            foreach (Document x2 in dte.Documents)
+                if (x2.Name == x)
+                {
+                    x2.Activate();
+                    break;
+                }
+        }
+
 
     }
 }

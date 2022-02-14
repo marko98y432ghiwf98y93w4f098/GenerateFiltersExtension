@@ -22,9 +22,9 @@ namespace VisualStudioCppExtensions
         private void button2Click(object sender, EventArgs e)
         {
             //project
+            ThreadHelper.ThrowIfNotOnUIThread();
             filterToDir.ProjectData p = new filterToDir.ProjectData();
             {
-                ThreadHelper.ThrowIfNotOnUIThread();
                 Project x = projectUtility.GetActive();
 
                 //check   1   project
@@ -79,7 +79,13 @@ namespace VisualStudioCppExtensions
 
 
             //dir
-            if (!p.e.full) p.dirSet();
+            if (!p.e.full)
+            {
+                projectUtility.documentsRefresh();
+                string dn = projectUtility.dte.ActiveDocument?.Name;
+                p.dirSet();
+                projectUtility.documentActivate(dn);
+            }
 
 
 

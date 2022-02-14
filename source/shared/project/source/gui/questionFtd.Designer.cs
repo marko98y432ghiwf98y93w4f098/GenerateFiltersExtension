@@ -49,7 +49,7 @@
             this.labelWarning4 = new System.Windows.Forms.Label();
             this.labelWarning5 = new System.Windows.Forms.Label();
             this.labelWarning6 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelWarning7 = new System.Windows.Forms.Label();
             this.groupBoxQuestion.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -233,9 +233,9 @@
             this.labelWarning5.AutoSize = true;
             this.labelWarning5.Location = new System.Drawing.Point(82, 224);
             this.labelWarning5.Name = "labelWarning5";
-            this.labelWarning5.Size = new System.Drawing.Size(295, 13);
+            this.labelWarning5.Size = new System.Drawing.Size(349, 13);
             this.labelWarning5.TabIndex = 11;
-            this.labelWarning5.Text = "2.   #include directives  may need to be changed";
+            this.labelWarning5.Text = "2.   #include directives may need to be changed afterward";
             // 
             // labelWarning6
             // 
@@ -246,14 +246,14 @@
             this.labelWarning6.TabIndex = 12;
             this.labelWarning6.Text = "3.   this extension will access your fileSystem:";
             // 
-            // label1
+            // labelWarning7
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(82, 266);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(271, 13);
-            this.label1.TabIndex = 13;
-            this.label1.Text = "move project files, delete empty directories";
+            this.labelWarning7.AutoSize = true;
+            this.labelWarning7.Location = new System.Drawing.Point(82, 266);
+            this.labelWarning7.Name = "labelWarning7";
+            this.labelWarning7.Size = new System.Drawing.Size(337, 13);
+            this.labelWarning7.TabIndex = 13;
+            this.labelWarning7.Text = "move project files, create and delete empty directories";
             // 
             // formQuestionFtd
             // 
@@ -261,7 +261,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(599, 293);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelWarning7);
             this.Controls.Add(this.labelWarning6);
             this.Controls.Add(this.labelWarning5);
             this.Controls.Add(this.labelWarning4);
@@ -314,6 +314,6 @@
         public System.Windows.Forms.GroupBox groupBoxQuestion;
         public System.Windows.Forms.Label labelWarning5;
         public System.Windows.Forms.Label labelWarning6;
-        public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Label labelWarning7;
     }
 }
