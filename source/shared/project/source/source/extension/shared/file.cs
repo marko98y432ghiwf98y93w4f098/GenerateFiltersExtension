@@ -7,13 +7,13 @@ using System.Text;
 
 namespace VisualStudioCppExtensions
 {
-    namespace filterToDir
+    namespace shared
     {
         public class file
         {
             public VCFile x;
 
-            public path x2;
+            public path xn;
 
             public filter xp;
 
@@ -26,7 +26,7 @@ namespace VisualStudioCppExtensions
             public void init(VCFile x, filter xp)
             {
                 this.x = x;
-                x2 = new path(x.FullPath);
+                xn = new path(x.FullPath);
                 this.xp = xp;
             }
         }

@@ -78,9 +78,9 @@
             this.labelQuestion.AutoSize = true;
             this.labelQuestion.Location = new System.Drawing.Point(12, 9);
             this.labelQuestion.Name = "labelQuestion";
-            this.labelQuestion.Size = new System.Drawing.Size(487, 13);
+            this.labelQuestion.Size = new System.Drawing.Size(486, 13);
             this.labelQuestion.TabIndex = 2;
-            this.labelQuestion.Text = "Do you want to automatically generate (directoryTree => filterTree) filters for:";
+            this.labelQuestion.Text = "Do you want to automatically generate (directoryTree 🡢 filterTree) filters for:";
             // 
             // labelInfoProject2
             // 

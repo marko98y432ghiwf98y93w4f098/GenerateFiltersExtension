@@ -60,7 +60,7 @@ namespace VisualStudioCppExtensions
                     if (!Directory.Exists(textBoxIn.Text)) throw new Exception("in dir is not valid");
                 if (!Directory.Exists(textBoxRootDir.Text)) throw new Exception("root dir is not valid");
                 if (checkBoxRootFilter.Checked)
-                    if (!dirToFilter.ProjectData.Root.filterCheck(textBoxRootFilter.Text)) throw new Exception("root filter is not valid");
+                    if (!dirToFilter.ProjectData.Data.filterCheck(textBoxRootFilter.Text)) throw new Exception("root filter is not valid");
             }
             catch(Exception e2)
             {
@@ -118,7 +118,7 @@ namespace VisualStudioCppExtensions
         public dirToFilter.ProjectData p;
         private void buttonCalculateFiltersDeleteAllClick(object sender, EventArgs e)
         {
-            dirToFilter.filters.filtersDeleteAll(p.p2);
+            dirToFilter.filters2.filtersDeleteAll(p.p.p);
         }
 
 

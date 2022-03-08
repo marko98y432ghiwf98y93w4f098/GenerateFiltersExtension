@@ -29,7 +29,7 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
         
         <Strings>
-          <ButtonText>sync     folder -&gt; filter</ButtonText>
+          <ButtonText>sync     folder  &#x1f86a;  filter</ButtonText>
         </Strings>
       </Button>
 
@@ -41,7 +41,7 @@
 			<CommandFlag>DynamicVisibility</CommandFlag>
 
 			<Strings>
-				<ButtonText>sync     filter -&gt; folder</ButtonText>
+				<ButtonText>sync     filter  &#x1f86a;  folder</ButtonText>
 			</Strings>
 		</Button>
     </Buttons>

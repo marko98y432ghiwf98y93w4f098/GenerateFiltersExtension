@@ -43,16 +43,16 @@
     <Compile Include="$(MSBuildThisFileDirectory)source\gui\questionFtd.Designer.cs">
       <DependentUpon>questionFtd.cs</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)source\source\extension\dirToFilter\file.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)source\source\extension\dirToFilter\filters.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)source\source\extension\dirToFilter\projectData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)source\source\extension\dirToFilter\work.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)source\source\extension\extension.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)source\source\extension\filterToDir\error.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)source\source\extension\filterToDir\file.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)source\source\extension\filterToDir\filters.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)source\source\extension\filterToDir\projectData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)source\source\extension\filterToDir\work.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\source\extension\shared\error.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\source\extension\shared\file.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\source\extension\shared\filter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\source\extension\shared\project.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)source\source\other\test\dte\document.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)source\source\other\test\dte\dte.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)source\source\other\test\dte\project.cs" />

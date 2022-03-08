@@ -69,9 +69,9 @@
             this.labelQuestion.AutoSize = true;
             this.labelQuestion.Location = new System.Drawing.Point(12, 9);
             this.labelQuestion.Name = "labelQuestion";
-            this.labelQuestion.Size = new System.Drawing.Size(511, 13);
+            this.labelQuestion.Size = new System.Drawing.Size(510, 13);
             this.labelQuestion.TabIndex = 2;
-            this.labelQuestion.Text = "Do you want to automatically generate (filterTree => directoryTree) directories f" +
+            this.labelQuestion.Text = "Do you want to automatically generate (filterTree 🡢 directoryTree) directories f" +
     "or:";
             // 
             // labelInfoProject2

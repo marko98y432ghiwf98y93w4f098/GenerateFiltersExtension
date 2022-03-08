@@ -7,14 +7,14 @@ using System.Text;
 
 namespace VisualStudioCppExtensions
 {
-    namespace filterToDir
+    namespace shared
     {
 
 
 
         public class error
         {
-            public enum Type { move, delete, dirName, sameFile, sameFilter, existFile/*, fileSaved*/ };
+            public enum Type { move, delete, dirName, sameFile, sameFilter, existFile, projectItemMissing };
 
 
 
@@ -24,9 +24,18 @@ namespace VisualStudioCppExtensions
                 public string[] s;
                 public Exception e;
             }
-            public List<data> x = new List<data>();
+            private List<data> x = new List<data>();
             public void add(data d) => this.x.Add(d);
             public bool full => x.Count > 0;
+
+
+
+
+            public int t;
+
+
+
+
 
 
 
@@ -72,11 +81,11 @@ namespace VisualStudioCppExtensions
                             s2 += "\r\n" + x2.s[0];
                             s2 += "\r\n" + x2.s[1];
                             break;
-                        /*case Type.fileSaved:
-                            s2 += "\r\nfiles that need to be moved are opened in editor, changed, but not saved.  Please save or discard (close without save).";
+                        case Type.projectItemMissing:
+                            s2 += "\r\nprojectItems are in vcProject.[filters | files] but not in its tree:";
                             foreach (string s3 in x2.s)
                                 s2 += "\r\n" + s3;
-                            break;*/
+                            break;
                     }
 
 

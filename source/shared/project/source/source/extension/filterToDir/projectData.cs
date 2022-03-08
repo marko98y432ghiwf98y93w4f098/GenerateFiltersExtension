@@ -6,6 +6,9 @@ using System.Text;
 using EnvDTE;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.VCProjectEngine;
+using System.Threading;
+using VisualStudioCppExtensions.shared;
+using Project = VisualStudioCppExtensions.shared.Project;
 
 namespace VisualStudioCppExtensions
 {
@@ -14,29 +17,6 @@ namespace VisualStudioCppExtensions
         public class ProjectData
         {
             //project
-            public class Project
-            {
-                public VCProject p;
-
-                //id
-                public string name;
-                public string dir;
-                public string dirFile;
-                public string guid;
-
-                public Project(VCProject x)
-                {
-                    p = x;
-
-                    name = p.Name;
-                    dir = p.ProjectDirectory;
-                    dirFile = p.ProjectFile;
-                    guid = p.ProjectGUID;
-                }
-
-                public bool flagDirty { get => p.IsDirty; }
-                public bool flagVcxItems { get => dirFile.EndsWith(".vcxitems", StringComparison.OrdinalIgnoreCase); }
-            }
             public Project p;
 
 
@@ -55,41 +35,12 @@ namespace VisualStudioCppExtensions
 
             public class Files
             {
-                public filters2 f2;
+                public filters f;
 
-                public void filesGet(Project p)
+                public void filesGet(ProjectData p)
                 {
-                    ThreadHelper.ThrowIfNotOnUIThread();
-                    VCReferences xr = (VCReferences)p.p.VCReferences;
-                    HashSet<string> xp = new HashSet<string>();
-
-
-                    if (!p.flagVcxItems)
-                    {
-                        //reference   search
-                        foreach (VCSharedProjectReference x in xr.GetReferencesOfType(32))
-                            xp.Add(((EnvDTE.Project)x.ReferencedProject).FullName);
-
-                        //reference   remove
-                        foreach (VCSharedProjectReference x in xr.GetReferencesOfType(32))
-                            xr.RemoveReference(x);
-                    }
-
-
-
-                    //projecctItems
-                    f2 = new filters2();
-                    f2.init(p.p);
-
-
-
-                    if (!p.flagVcxItems)
-                    {
-                        //reference   add
-                        bool x3;
-                        foreach (string x in xp)
-                            xr.AddSharedProjectReference(x, out x3);
-                    }
+                    f = new filters();
+                    f.init(p.p, p.e);
                 }
 
 
@@ -110,23 +61,23 @@ namespace VisualStudioCppExtensions
 
 
                     //exist   file
-                    foreach (var x3 in x.o.files.Where(x2 => !File.Exists(x2.Key)))
+                    foreach (var x3 in x.o.file.Where(x2 => !File.Exists(x2.Key)))
                         e.add(new error.data() { t = error.Type.existFile, s = new string[] { "path:     " + x3.Key, "filter:   " + dir.file2.fileRelative(x3.Value).x } });
 
                     //same   file
-                    foreach (var x3 in x.o.files.GroupBy(x2 => dir.file2.fileRelative(x2.Value).x.ToLower()).Where(x2 => x2.Count() > 1))
+                    foreach (var x3 in x.o.file.GroupBy(x2 => dir.file2.fileRelative(x2.Value).x.ToLower()).Where(x2 => x2.Count() > 1))
                         e.add(new error.data() { t = error.Type.sameFile, s = new string[] { x3.Key } });
 
                     //same   filter
-                    foreach (var x3 in x.o.filters2.GroupBy(x2 => x2.xn.x.ToLower()).Where(x2 => x2.Count() > 1))
+                    foreach (var x3 in x.o.filter.GroupBy(x2 => x2.Value.xn.x.ToLower()).Where(x2 => x2.Count() > 1))
                         e.add(new error.data() { t = error.Type.sameFilter, s = new string[] { x3.Key } });
 
 
-                    foreach (filter x2 in x.o.filters2)
-                        check2(x2, e);
+                    foreach (var x2 in x.o.filter)
+                        check2(x2.Value, e);
                 }
 
-                public void check(error e) => check2(f2.f, e);
+                public void check(error e) => check2(f.f, e);
 
             }
             public Files f = new Files();
@@ -163,24 +114,7 @@ namespace VisualStudioCppExtensions
             {
                 public class Calculate
                 {
-                    public path filter = new path("");
-
-                    static bool filterCheck(string s)
-                    {
-                        if (!s.xFull()) return true;
-                        return !s.Any(x => !(char.IsLetterOrDigit(x) || x == ' ' || x == '\\' || x == '/'));
-                    }
-
-                    public void filterSet(string s)
-                    {
-                        filter = null;
-                        if (!s.xFull()) return;
-
-                        //check
-                        if (!filterCheck(s)) throw new Exception();
-
-                        filter = new path(s);
-                    }
+                    public path filter = new path("");                
                 }
                 public Calculate c = new Calculate();
 
@@ -319,14 +253,26 @@ namespace VisualStudioCppExtensions
                     //static
                     public static bool move(path p1, path p2, error e)
                     {
-                        try
+                        while (true)
                         {
-                            File.Move(p1.x, p2.x);
-                        }
-                        catch (Exception ex)
-                        {
-                            e.add(new error.data() { t = error.Type.move, s = new string[] { p1.x, p2.x }, e = ex });
-                            return false;
+                            bool b = false;
+                            try
+                            {
+                                File.Move(p1.x, p2.x);
+                            }
+                            catch (Exception ex)
+                            {
+                                if (ex.Message.Contains("because it is being used by another process"))
+                                {
+                                    b = true;
+                                    e.t++;
+                                    System.Threading.Thread.Sleep(1000);
+                                }
+                                if (b && e.t < 30) continue;
+                                e.add(new error.data() { t = error.Type.move, s = new string[] { p1.x, p2.x }, e = ex });
+                                return false;
+                            }
+                            break;
                         }
                         return true;
                     }
@@ -369,19 +315,19 @@ namespace VisualStudioCppExtensions
 
 
                     //scan
-                    public static path fileRelative(file x) => (x.xp.xn ?? new path("")) + x.x2.sLast;
+                    public static path fileRelative(file x) => (x.xp.xn ?? new path("")) + x.xn.sLast;
 
                     public static LinkedList<file2> filesGet(path r, filter x, ref LinkedList<file2> x2)
                     {
-                        foreach (var x3 in x.o.files)
+                        foreach (var x3 in x.o.file)
                         {
-                            path p1 = x3.Value.x2;
+                            path p1 = x3.Value.xn;
                             path p2 = r + fileRelative(x3.Value);
                             if (!path.oEqual(p1, p2)) x2.AddLast(new file2() { f = x3.Value, p1 = p1, p2 = p2 });
                         }
 
-                        foreach (filter x3 in x.o.filters2)
-                            filesGet(r, x3, ref x2);
+                        foreach (var x3 in x.o.filter)
+                            filesGet(r, x3.Value, ref x2);
 
                         return x2;
                     }
@@ -553,7 +499,7 @@ namespace VisualStudioCppExtensions
                     file2[] x = null;
                     {
                         LinkedList<file2> x1 = new LinkedList<file2>();
-                        file2.filesGet(root, p.f.f2.f, ref x1);
+                        file2.filesGet(root, p.f.f.f, ref x1);
                         x = x1.ToArray();
                         //error
                         /*{
@@ -569,7 +515,7 @@ namespace VisualStudioCppExtensions
                     HashSet<dir2> x2 = new HashSet<dir2>();
                     foreach (file2 x3 in x)
                     {
-                        x2.Add(new dir2() { d = x3.f.x2.mUp() });
+                        x2.Add(new dir2() { d = x3.f.xn.mUp() });
                         x3.createMoveD();
                     }
 

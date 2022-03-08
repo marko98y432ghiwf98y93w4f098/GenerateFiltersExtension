@@ -192,10 +192,10 @@ namespace VisualStudioCppExtensions
             {
                 if (x == null)
                 {
-                    x = new path(p2, s);
+                    x = (new path(p2, s)).mUp();
                     continue;
                 }
-                x = oCommon(x, new path(p2, s), s);
+                x = oCommon(x, (new path(p2, s)).mUp(), s);
                 if (x == null) break;
                 if (x.x2.Length == 0) break;
             }

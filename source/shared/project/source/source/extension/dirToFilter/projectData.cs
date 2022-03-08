@@ -6,6 +6,8 @@ using System.Text;
 using EnvDTE;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.VCProjectEngine;
+using VisualStudioCppExtensions.shared;
+
 
 namespace VisualStudioCppExtensions
 {
@@ -13,26 +15,33 @@ namespace VisualStudioCppExtensions
     {
         public class ProjectData
         {
-            public Project p;
-            public VCProject p2;
-            public string fileName;
-            public string path;
-            public bool isVcxitems;
-
+            public shared.Project p;
+            
 
 
             public struct Files
             {
-                public Dictionary<string, VCFile> file;
-                public Dictionary<string, VCFile> fileIn;
-                //public Dictionary<string, List<String>> group;
-                public Dictionary<string, file> fileIn2;
+                public filters2 f;
+                public Dictionary<string, file> fileIn;
+
+
+                public void filesGet(ProjectData p)
+                {
+                    f = new filters2();
+                    f.init(p.p, p.e);
+                }
+
+                public void filesIn(ProjectData p)
+                {
+                    Dictionary<string, file> x2 = f.f.a.file;
+                    path d2 = new path(p.d.i.dir);
+                    fileIn = (p.d.i.mode == Data.In.inMode.project) ? x2 :
+                               (p.d.i.mode == Data.In.inMode.dirSubDir) ?
+                                   x2.Where(x => (x.Value.xn - d2) != null).ToDictionary(x => x.Key, x => x.Value) :
+                                   x2.Where(x => (x.Value.xn - d2)?.count == 1).ToDictionary(x => x.Key, x => x.Value);
+                }
             }
-            public Files f;
-
-
-
-            public filters f2;
+            public Files f = new Files();
 
 
 
@@ -41,7 +50,7 @@ namespace VisualStudioCppExtensions
 
 
 
-
+            
 
 
 
@@ -53,7 +62,13 @@ namespace VisualStudioCppExtensions
 
 
 
-            public class Root
+
+
+
+
+
+
+            public class Data
             {
                 public class In
                 {
@@ -92,7 +107,7 @@ namespace VisualStudioCppExtensions
                         (sFull ? s : "");
                 }
 
-                public bool filterFull { get => !string.IsNullOrWhiteSpace(o.filter); }
+                public bool filterFull => !string.IsNullOrWhiteSpace(o.filter);
 
 
                 public static bool filterCheck(string s)
@@ -120,11 +135,12 @@ namespace VisualStudioCppExtensions
                     o.filter = s3.ToString();
                 }
             }
-            public Root r = new Root();
+            public Data d = new Data();
 
 
 
 
+            public error e = new error();
 
 
 
@@ -150,88 +166,30 @@ namespace VisualStudioCppExtensions
 
 
 
+            
 
 
 
 
-            public void filesGet()
-            {
-                ThreadHelper.ThrowIfNotOnUIThread();
-                HashSet<string> xp = new HashSet<string>();
-                VCReferences xr = (VCReferences)p2.VCReferences;
 
 
-                if (!isVcxitems)
-                {
-                    //reference   search
-                    foreach (VCSharedProjectReference x in xr.GetReferencesOfType(32))
-                        xp.Add(((Project)x.ReferencedProject).FullName);
 
 
-                    //reference   remove
-                    foreach (VCSharedProjectReference x in xr.GetReferencesOfType(32))
-                        xr.RemoveReference(x);
-                }
 
 
-                //projecctItems
-                f.file = ((IVCCollection)p2.Files).Cast<VCFile>().Where(x => x.ItemType != null).ToDictionary(x => x.FullPath);
 
 
-                if (!isVcxitems)
-                {
-                    //reference   add
-                    bool x3;
-                    foreach (string x in xp)
-                        xr.AddSharedProjectReference(x, out x3);
-                }
-            }
 
 
-            public void filesIn()
-            {
-                f.fileIn = (r.i.mode == Root.In.inMode.project) ? f.file :
-                           r.i.mode == Root.In.inMode.dirSubDir ?
-                               f.file.Where(x => x.Key.StartsWith(r.i.dir)).ToDictionary(x => x.Key, x => x.Value) :
-                               f.file.Where(x => File.Exists(r.i.dir + '\\' + x.Value.Name)).ToDictionary(x => x.Key, x => x.Value);
 
-                f.fileIn2 = f.fileIn.Select(x =>
-                    {
-                        file x2 = new file();
-                        x2.init(x.Value);
-                        x2.init(r.c.dir);
-                        return x2;
-                    }
-                ).ToDictionary(x => x.xn.x, x => x);
 
-                //filesGroup();
-            }
 
 
 
 
 
-            /*public void filesGroup()
-            {
-                // ClCompile -> .cpp, .cc, .c, ...
-                // ClInclude -> .h, .hxx, .hpp, ...
-                // None -> Makefile, .gitignore, ...
-                f.group = new Dictionary<string, List<string>>();
-                foreach (ProjectItem projectItem in f.file)
-                    try
-                    {
-                        string itemType = (string)projectItem.Properties.Item("ItemType").Value;
-                        if (string.IsNullOrEmpty(itemType)) continue;
 
-                        if (!f.group.ContainsKey(itemType))
-                            f.group.Add(itemType, new List<string>());
 
-                        f.group[itemType].Add((string)projectItem.Properties.Item("FullPath").Value);
-                    }
-                    catch (Exception)
-                    {
-                    }
-            }*/
 
 
 
@@ -249,8 +207,7 @@ namespace VisualStudioCppExtensions
 
 
 
-
-
+           
 
 
 
@@ -258,11 +215,9 @@ namespace VisualStudioCppExtensions
 
             public void filtersGet()
             {
-                f2 = new filters();
-                f2.init(p2);
-                f2.fCleanEmpty(f.fileIn, r.c.fEmptyDelete);
-                f2.fRoot = f2.fAdd(f2.f, r.o.filter);
-                f2.filtersSet(f.fileIn2);
+                f.f.fDeleteEmpty(f.fileIn, d.c.fEmptyDelete);
+                f.f.fRoot = f.f.fAdd(f.f.f.f, d.o.filter);
+                f.f.fAdd(f.fileIn, new path(d.c.dir));
             }
         }
 

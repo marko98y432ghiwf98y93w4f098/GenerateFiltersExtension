@@ -42,11 +42,13 @@ namespace VisualStudioCppExtensions
             //strings[0].Add(kind);
             
             string itemType = x.ItemType;          //[null, clInclude, none, clCompile]
-            //strings[1].Add(itemType);
-            
+                                                   //strings[1].Add(itemType);
+
+            #if (sVs2015 == false) 
             string contentType = x.ContentType;          //[Filters, cppHeader, "", cppCode]
+            #endif
             //strings[2].Add(contentType);
-            
+
             string fileType = x.FileType.ToString();          //enum     eFileType[Filters, CppHeader, Document, CppCode]
             //strings[3].Add(fileType);
             

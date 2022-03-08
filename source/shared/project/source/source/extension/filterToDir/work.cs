@@ -30,11 +30,11 @@ namespace VisualStudioCppExtensions
                 //check   1   project
                 if (!projectUtility.IsCpp(x))
                 {
-                    ErrorMessageBox("A C++ project must be selected to generate filter!");
+                    ErrorMessageBox("A C++ project must be selected");
                     return;
                 }
 
-                p.p = new filterToDir.ProjectData.Project((VCProject)x.Properties.Item("project").Object);
+                p.p = new shared.Project((VCProject)x.Properties.Item("project").Object);
             }
 
 
@@ -42,7 +42,7 @@ namespace VisualStudioCppExtensions
 
 
             //files, filters
-            p.f.filesGet(p.p);
+            p.f.filesGet(p);
 
             //data
             {
@@ -60,7 +60,7 @@ namespace VisualStudioCppExtensions
             //check   2
             formQuestionFtd fq = new formQuestionFtd();
 
-            fq.labelInfoProject2.Text = p.p.p.Name;
+            fq.labelInfoProject2.Text = p.p.name;
             fq.labelInfoCalculate3.Text = p.d.c.filter.x;
             fq.labelInfoOut3.Text = p.d.o.dir.x;
 
