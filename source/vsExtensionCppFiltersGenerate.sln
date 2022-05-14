@@ -16,12 +16,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2019", "other\2019\2019.csproj", "{1FEF684B-F519-4AED-A771-0DC642CD8F38}"
 EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		shared\project\cppFiltersAutoShared.projitems*{18555a86-3a5f-4d33-8c12-01e288bdc30e}*SharedItemsImports = 4
-		shared\project\cppFiltersAutoShared.projitems*{18555a86-3a5f-4d33-8c12-01e288bdc30f}*SharedItemsImports = 4
-		shared\project\cppFiltersAutoShared.projitems*{1fef684b-f519-4aed-a771-0dc642cd8f38}*SharedItemsImports = 4
-		shared\project\cppFiltersAutoShared.projitems*{e85de64f-d3dc-4d22-89b7-cda7311e1335}*SharedItemsImports = 13
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|x86 = Debug|x86
@@ -72,5 +66,12 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B0D51C1E-B8EB-49FB-9285-7A3D86E32E93}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		shared\project\cppFiltersAutoShared.projitems*{18555a86-3a5f-4d33-8c12-01e288bdc30e}*SharedItemsImports = 4
+		shared\project\cppFiltersAutoShared.projitems*{18555a86-3a5f-4d33-8c12-01e288bdc30f}*SharedItemsImports = 4
+		shared\project\cppFiltersAutoShared.projitems*{18555a86-3a5f-4d33-8c12-01e288bdc310}*SharedItemsImports = 4
+		shared\project\cppFiltersAutoShared.projitems*{1fef684b-f519-4aed-a771-0dc642cd8f38}*SharedItemsImports = 4
+		shared\project\cppFiltersAutoShared.projitems*{e85de64f-d3dc-4d22-89b7-cda7311e1335}*SharedItemsImports = 13
 	EndGlobalSection
 EndGlobal

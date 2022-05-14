@@ -6,10 +6,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Text;
+using Microsoft.VisualStudio.VCProjectEngine;
 
 namespace VisualStudioCppExtensions
 {
-    public class projectUtility
+    public static class projectUtility
     {
         //dte
         public static DTE dte => (DTE)Package.GetGlobalService(typeof(SDTE));
@@ -35,13 +36,14 @@ namespace VisualStudioCppExtensions
 
 
         //project   cpp
-        public static bool IsCpp(Project project)
+        public static bool xIsCpp(this Project x)
         {
-            ThreadHelper.ThrowIfNotOnUIThread();
-            return project != null
-                   && (project.CodeModel.Language == CodeModelLanguageConstants.vsCMLanguageMC
-                       || project.CodeModel.Language == CodeModelLanguageConstants.vsCMLanguageVC);
+            return x != null
+                   && (x.CodeModel.Language == CodeModelLanguageConstants.vsCMLanguageMC
+                       || x.CodeModel.Language == CodeModelLanguageConstants.vsCMLanguageVC);
         }
+
+        public static VCProject xProjectVc(this Project x) => (VCProject)x.Properties.Item("project").Object;
 
 
 

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formAdvanced));
             this.textBoxRootDir = new System.Windows.Forms.TextBox();
             this.labelRootDir = new System.Windows.Forms.Label();
@@ -54,6 +55,7 @@
             this.tabPageOther = new System.Windows.Forms.TabPage();
             this.buttonCalculateFiltersDeleteAll = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.calculateMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tabControlMain.SuspendLayout();
             this.tabPageGenerate.SuspendLayout();
             this.tabPageOther.SuspendLayout();
@@ -61,6 +63,7 @@
             // 
             // textBoxRootDir
             // 
+            this.textBoxRootDir.ContextMenuStrip = this.calculateMenu;
             this.textBoxRootDir.Location = new System.Drawing.Point(12, 297);
             this.textBoxRootDir.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textBoxRootDir.Name = "textBoxRootDir";
@@ -80,6 +83,7 @@
             // 
             // buttonCaluculate
             // 
+            this.buttonCaluculate.ContextMenuStrip = this.calculateMenu;
             this.buttonCaluculate.Location = new System.Drawing.Point(708, 239);
             this.buttonCaluculate.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.buttonCaluculate.Name = "buttonCaluculate";
@@ -345,6 +349,13 @@
             this.label1.TabIndex = 13;
             this.label1.Text = "calculate";
             // 
+            // calculateMenu
+            // 
+            this.calculateMenu.Font = new System.Drawing.Font("Consolas", 9F);
+            this.calculateMenu.Name = "calculateMenu";
+            this.calculateMenu.Size = new System.Drawing.Size(181, 26);
+            this.calculateMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.calculateMenuItemClicked);
+            // 
             // formAdvanced
             // 
             this.AcceptButton = this.buttonOk;
@@ -395,5 +406,6 @@
         private System.Windows.Forms.TabPage tabPageGenerate;
         private System.Windows.Forms.Button buttonCalculateFiltersDeleteAll;
         private System.Windows.Forms.Label label1;
+        public System.Windows.Forms.ContextMenuStrip calculateMenu;
     }
 }

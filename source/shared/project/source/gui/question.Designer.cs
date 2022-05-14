@@ -182,7 +182,7 @@
             // labelWarning3
             // 
             this.labelWarning3.AutoSize = true;
-            this.labelWarning3.Location = new System.Drawing.Point(82, 184);
+            this.labelWarning3.Location = new System.Drawing.Point(82, 182);
             this.labelWarning3.Name = "labelWarning3";
             this.labelWarning3.Size = new System.Drawing.Size(349, 13);
             this.labelWarning3.TabIndex = 5;
@@ -231,7 +231,7 @@
             // labelWarning4
             // 
             this.labelWarning4.AutoSize = true;
-            this.labelWarning4.Location = new System.Drawing.Point(82, 201);
+            this.labelWarning4.Location = new System.Drawing.Point(82, 199);
             this.labelWarning4.Name = "labelWarning4";
             this.labelWarning4.Size = new System.Drawing.Size(151, 13);
             this.labelWarning4.TabIndex = 10;

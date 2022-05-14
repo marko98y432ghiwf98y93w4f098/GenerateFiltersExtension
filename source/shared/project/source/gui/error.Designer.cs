@@ -55,6 +55,7 @@
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Consolas", 8.25F);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(200, 100);
             this.Name = "formError";
             this.Text = "error";
             this.ResumeLayout(false);

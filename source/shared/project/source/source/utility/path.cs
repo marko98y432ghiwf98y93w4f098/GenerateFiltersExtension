@@ -55,7 +55,7 @@ namespace VisualStudioCppExtensions
         {
             x2 = new string[0];
             if (x != null)
-                x2 = x.Split(s.s, StringSplitOptions.RemoveEmptyEntries).Select(x3 => x3.Trim()).Where(x3 => x3.xFull()).ToArray();
+                x2 = x.Split(s.s, StringSplitOptions.RemoveEmptyEntries).Select(x3 => x3.Trim()).Where(x3 => !x3.xEmpty()).ToArray();
             xJoin();
 
             return this;
@@ -128,7 +128,7 @@ namespace VisualStudioCppExtensions
         public static path oPlus(path x1, string x2, Separator s = null)
         {
             if (x1.xNull()) return null;
-            if (!x2.xFull()) return new path(x1.x2, x1.s);          //clone
+            if (x2.xEmpty()) return new path(x1.x2, x1.s);          //clone
             if (s == null) s = new Separator();
 
             return new path(x1.x2.Append(x2).ToArray(), s);

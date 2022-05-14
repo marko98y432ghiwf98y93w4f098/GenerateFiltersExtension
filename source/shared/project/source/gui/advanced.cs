@@ -82,27 +82,18 @@ namespace VisualStudioCppExtensions
 
 
 
-
-
-        private void buttonInClick(object sender, EventArgs e)
+        private void dialogShow(TextBox x)
         {
             FolderBrowserDialog d = dialogFolder;
             d.RootFolder = Environment.SpecialFolder.Desktop;
-            d.SelectedPath = textBoxIn.Text;
+            d.SelectedPath = x.Text;
             d.ShowNewFolderButton = true;
             if (d.ShowDialog(this) != DialogResult.OK) return;
-            textBoxIn.Text = d.SelectedPath;
+            x.Text = d.SelectedPath;
         }
 
-        private void buttonCalculateClick(object sender, EventArgs e)
-        {
-            FolderBrowserDialog d = dialogFolder;
-            d.RootFolder = Environment.SpecialFolder.Desktop;
-            d.SelectedPath = textBoxRootDir.Text;
-            d.ShowNewFolderButton = true;
-            if (d.ShowDialog(this) != DialogResult.OK) return;
-            textBoxRootDir.Text = d.SelectedPath;
-        }
+        private void buttonInClick(object sender, EventArgs e) => dialogShow(textBoxIn);
+        private void buttonCalculateClick(object sender, EventArgs e) => dialogShow(textBoxRootDir);
 
 
 
@@ -119,10 +110,11 @@ namespace VisualStudioCppExtensions
         private void buttonCalculateFiltersDeleteAllClick(object sender, EventArgs e)
         {
             dirToFilter.filters2.filtersDeleteAll(p.p.p);
+            p.f.filesGet(p);
         }
 
 
-
+        private void calculateMenuItemClicked(object sender, ToolStripItemClickedEventArgs e) => textBoxRootDir.Text = (string)e.ClickedItem.Tag;
 
 
         protected override bool ProcessDialogKey(Keys keyData)
@@ -132,9 +124,6 @@ namespace VisualStudioCppExtensions
             this.Close();
             return true;
         }
-
-
-        
     }
 
 

@@ -23,7 +23,7 @@ namespace VisualStudioCppExtensions
         public static bool xC(this string x, string x2) => string.Equals(x, x2, StringComparison.Ordinal);
         public static bool xC2(this string x, string x2) => string.Equals(x, x2, StringComparison.OrdinalIgnoreCase);
 
-        public static bool xFull(this string x) => !string.IsNullOrWhiteSpace(x);
+        public static bool xEmpty(this string x) => string.IsNullOrWhiteSpace(x);
 
 
 
