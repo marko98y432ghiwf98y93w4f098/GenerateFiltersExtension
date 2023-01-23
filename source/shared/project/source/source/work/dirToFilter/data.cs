@@ -7,6 +7,7 @@ using EnvDTE;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.VCProjectEngine;
 using VisualStudioCppExtensions.shared;
+using u.other;
 
 
 namespace VisualStudioCppExtensions

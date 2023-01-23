@@ -7,14 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using u;
+using u.forms.form;
 
 namespace VisualStudioCppExtensions
 {
-    public partial class formError : Form
+    public partial class formError : form2
     {
         public formError()
         {
             InitializeComponent();
+            this.xScale();
         }
 
 

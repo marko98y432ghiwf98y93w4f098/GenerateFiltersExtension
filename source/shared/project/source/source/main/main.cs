@@ -12,9 +12,6 @@ namespace VisualStudioCppExtensions
 
 
 
-
-
-
     [Guid(gui.packageGuid)]          //tag entry with attributes
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)]
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
@@ -27,8 +24,8 @@ namespace VisualStudioCppExtensions
 
 
 
-        //gui
-        public class gui
+        
+        public class gui          //gui
         {
             public const string packageGuid = "99d03761-6200-41ad-b2a1-638ae9e780e5";
             public static readonly Guid groupGuid = new Guid("acd8036f-19ae-43b2-a2d6-11788cb282fe");
@@ -45,8 +42,6 @@ namespace VisualStudioCppExtensions
             await JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
         }  
     }
-
-
 
 
 }

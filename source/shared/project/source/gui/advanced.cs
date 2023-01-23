@@ -8,10 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using u;
+using u.forms.form;
 
 namespace VisualStudioCppExtensions
 {
-    public partial class formAdvanced : Form
+    public partial class formAdvanced : form2
     {
         public enum Result
         {
@@ -22,7 +24,7 @@ namespace VisualStudioCppExtensions
 
 
 
-        public formAdvanced() { InitializeComponent(); textBoxResult.TabStop = false;}
+        public formAdvanced() { InitializeComponent(); textBoxResult.TabStop = false; this.xScale(); }
 
 
 
@@ -42,18 +44,18 @@ namespace VisualStudioCppExtensions
 
         private void checkBoxRootFilterCheckedChanged(object sender, EventArgs e) => textBoxRootFilter.Enabled = checkBoxRootFilter.Checked;
 
-        
+
 
 
 
 
         public void error(string s) => textBoxResult.Text = s;
-        
+
         private void formAdvancedFormClosing(object sender, FormClosingEventArgs e)
         {
             if (e.CloseReason != CloseReason.UserClosing) { r = Result.none; return; }
             if (r != Result.ok) return;
-                    
+
             try
             {
                 if (!radioButtonInProject.Checked)
@@ -62,13 +64,13 @@ namespace VisualStudioCppExtensions
                 if (checkBoxRootFilter.Checked)
                     if (!dirToFilter.ProjectData.Data.filterCheck(textBoxRootFilter.Text)) throw new Exception("root filter is not valid");
             }
-            catch(Exception e2)
+            catch (Exception e2)
             {
                 error(e2.Message);
                 r = Result.none;
                 e.Cancel = true;
             }
-                
+
         }
 
 

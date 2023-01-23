@@ -9,6 +9,7 @@ using Microsoft.VisualStudio.VCProjectEngine;
 using System.Threading;
 using VisualStudioCppExtensions.shared;
 using Project = VisualStudioCppExtensions.shared.Project;
+using u.other;
 
 namespace VisualStudioCppExtensions
 {

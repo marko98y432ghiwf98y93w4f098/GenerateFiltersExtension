@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using VisualStudioCppExtensions.shared;
+using u.other;
 
 
 
@@ -76,7 +77,7 @@ namespace VisualStudioCppExtensions
             public filter fAdd(filter f, string x)
             {
                 if (x == null) return f;
-                path x2 = new path(x, path.Separator.sDefault);
+                path x2 = new path(x, path.separator.sDefault);
 
 
                 filter x3 = f;

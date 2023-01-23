@@ -7,10 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using u;
+using u.forms.form;
 
 namespace VisualStudioCppExtensions
 {
-    public partial class formQuestion : Form
+    public partial class formQuestion : form2
     {
         public enum Result
         {
@@ -28,6 +30,7 @@ namespace VisualStudioCppExtensions
             int x = this.Height;
             MinimumSize = new Size(Width, Height);
             MaximumSize = new Size(Width * 10, Height);
+            this.xScale();
         }
 
 

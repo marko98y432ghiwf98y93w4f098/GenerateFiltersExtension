@@ -12,14 +12,13 @@ namespace VisualStudioCppExtensions
 {
     public static class projectUtility
     {
-        //dte
-        public static DTE dte => (DTE)Package.GetGlobalService(typeof(SDTE));
+        public static DTE dte => (DTE)Package.GetGlobalService(typeof(SDTE));          //dte
 
 
 
 
-        //project   active
-        public static Project GetActive() => GetActive(dte);
+
+        public static Project pActive() => GetActive(dte);          //project   active
 
 
         public static Project GetActive(DTE dte)
@@ -35,8 +34,8 @@ namespace VisualStudioCppExtensions
 
 
 
-        //project   cpp
-        public static bool xIsCpp(this Project x)
+        
+        public static bool xIsCpp(this Project x)          //project   cpp
         {
             return x != null
                    && (x.CodeModel.Language == CodeModelLanguageConstants.vsCMLanguageMC
@@ -55,8 +54,8 @@ namespace VisualStudioCppExtensions
 
 
 
-        //documents
-        public static void documentsRefresh()          //push   document tab lazy open
+        
+        public static void documentsRefresh()          //documents          //push   document tab lazy open
         {
             foreach (Document x4 in dte.Documents) { }
         }
@@ -76,7 +75,5 @@ namespace VisualStudioCppExtensions
                     break;
                 }
         }
-
-
     }
 }

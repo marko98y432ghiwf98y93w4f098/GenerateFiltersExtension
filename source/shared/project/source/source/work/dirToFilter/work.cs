@@ -13,6 +13,8 @@ using System.Text;
 using System.Linq;
 using System.Windows.Forms;
 using System.Drawing;
+using u.other;
+using u.forms;
 
 namespace VisualStudioCppExtensions
 {
@@ -22,41 +24,41 @@ namespace VisualStudioCppExtensions
 
 
         
-        //callback
-        private void buttonClick(object sender, EventArgs e)
+        
+        private void buttonClick(object sender, EventArgs e)          //callback
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
 
 
 
-            //prepare
-            //project
-            dirToFilter.ProjectData p = new dirToFilter.ProjectData();
+            
+            
+            dirToFilter.ProjectData p = new();          //prepare          //project
             {
-                Project x = projectUtility.GetActive();
+                Project x = projectUtility.pActive();
 
-                //check   1   project
-                if (!x.xIsCpp()) { ErrorMessageBox("A C++ project must be selected"); return; }
+                if (!x.xIsCpp()) { ErrorMessageBox("A C++ project must be selected"); return; }          //check   1   project
 
                 p.p = new shared.Project(x.xProjectVc());
             }
 
 
 
-            //files, filters
-            p.f.filesGet(p);
+
+            
+            p.f.filesGet(p);          //files, filters
 
 
 
-            //data
-            {
-                //in
-                p.d.i.dir = p.p.dir;
 
-                //calculate
+            {          //data
+
+                p.d.i.dir = p.p.dir;          //in
+
+
                 {
-                    path x2 = path.oCommon(p.f.f.f.a.file.Select(x => x.Key).ToArray());
+                    path x2 = path.oCommon(p.f.f.f.a.file.Select(x => x.Key).ToArray());          //calculate
                     p.d.c.dir = p.d.c.dirOptionHighest = x2 == null ? "" : x2.x;
 
                     /*if (p.d.c.dir.xEmpty())
@@ -81,8 +83,7 @@ namespace VisualStudioCppExtensions
 
 
 
-            //gui
-            //check   2   confirm
+            //gui          //check   2   confirm
             /*if (VsShellUtilities.ShowMessageBox(this.packageIServiceProvider,
                                                 string.Format("Generate filter per folder for '{0}'?\nExisting filters will be erased", project.UniqueName),
                                                 string.Empty,
@@ -94,27 +95,27 @@ namespace VisualStudioCppExtensions
 
 
 
-            //check   2
-            formQuestion fq = new formQuestion();
+
+            formQuestion fq = new();          //check   2
             {
-                fq.labelInfoProject2.Text = p.p.name;
-                fq.labelInfoCalculate3.Text = p.d.c.dir;
-                fq.labelInfoOut3.Text = p.d.o.filter;
+                fq.labelInfoProject2.Text = /*xText(*/p.p.name/*)*/;
+                fq.labelInfoCalculate3.Text = /*xText(*/p.d.c.dir/*)*/;
+                fq.labelInfoOut3.Text = /*xText(*/p.d.o.filter/*)*/;
             }
             {
-                fq.Width = Math.Max(fq.Width, 200 + TextRenderer.MeasureText(p.d.c.dir, fq.labelInfoCalculate3.Font).Width + 79);
+                //fq.Width = Math.Max(fq.Width, 200 + TextRenderer.MeasureText(p.d.c.dir, fq.labelInfoCalculate3.Font).Width + 79);
             }
             fq.StartPosition = FormStartPosition.CenterScreen;
-            fq.ShowDialog((IWin32Window)p.p.p2.DTE.MainWindow.LinkedWindowFrame);
+            fq.ShowDialog((IWin32Window)projectUtility.dte.MainWindow.LinkedWindowFrame);
             if (fq.r == formQuestion.Result.none) return;
 
 
 
 
-            //check   2   advanced
-            if (fq.r == formQuestion.Result.advanced)
+            
+            if (fq.r == formQuestion.Result.advanced)          //check   2   advanced
             {
-                formAdvanced fa = new formAdvanced();
+                formAdvanced fa = new();
                 {
                     fa.textBoxIn.Text = p.d.i.dir;
                     fa.textBoxRootDir.Text = p.d.c.dir;
@@ -162,8 +163,8 @@ namespace VisualStudioCppExtensions
 
 
 
-            //work
-            p.f.filesIn(p);
+            
+            p.f.filesIn(p);          //work
             p.filtersSet();
 
 
@@ -173,15 +174,14 @@ namespace VisualStudioCppExtensions
 
 
 
-            //error
-            if (p.e.full)
+            
+            if (p.e.full)          //error
             {
-                formError fe = new formError();
+                formError fe = new ();
                 fe.textBox.Text = p.e.ToString();
                 fe.StartPosition = FormStartPosition.CenterScreen;
                 fe.ShowDialog((IWin32Window)projectUtility.dte.MainWindow.LinkedWindowFrame);
             }
-
         }
     }
 }

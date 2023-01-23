@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formError));
-            this.textBox = new System.Windows.Forms.TextBox();
+            this.textBox = new u.forms.textBox.textBox2();
             this.SuspendLayout();
             // 
             // textBox

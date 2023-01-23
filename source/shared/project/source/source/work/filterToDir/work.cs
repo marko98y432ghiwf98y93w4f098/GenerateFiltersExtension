@@ -12,14 +12,16 @@ using System.Reflection;
 using System.Text;
 using System.Linq;
 using System.Windows.Forms;
+using u.other;
+using u.forms;
 
 namespace VisualStudioCppExtensions
 {
     internal sealed partial class main2
     {
 
-        //callback
-        private void button2Click(object sender, EventArgs e)
+       
+        private void button2Click(object sender, EventArgs e)          //callback
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
@@ -27,26 +29,26 @@ namespace VisualStudioCppExtensions
 
 
 
-            //prepare
-            //project
-            filterToDir.ProjectData p = new filterToDir.ProjectData();
+            
+            
+            filterToDir.ProjectData p = new();          //prepare          //project
             {
-                Project x = projectUtility.GetActive();
+                Project x = projectUtility.pActive();
 
-                //check   1   project
-                if (!x.xIsCpp()) { ErrorMessageBox("A C++ project must be selected"); return; }
+                if (!x.xIsCpp()) { ErrorMessageBox("A C++ project must be selected"); return; }          //check   1   project
 
                 p.p = new shared.Project((VCProject)x.Properties.Item("project").Object);
             }
 
 
 
-            //files, filters
-            p.f.filesGet(p);
 
-            //data
+           
+            p.f.filesGet(p);          //files, filters
+
+
             {
-                p.d.o.dir = new path(p.p.dir);
+                p.d.o.dir = new path(p.p.dir);          //data
                 if (!p.d.o.dir.xFull()) { ErrorMessageBox("project root dir is not valid"); return; }
             }
 
@@ -57,25 +59,25 @@ namespace VisualStudioCppExtensions
 
 
 
-            //gui
-            //check   2
-            formQuestionFtd fq = new formQuestionFtd();
+            
+            
+            formQuestionFtd fq = new();          //gui          //check   2
             {
-                fq.labelInfoProject2.Text = p.p.name;
-                fq.labelInfoCalculate3.Text = p.d.c.filter.x;
-                fq.labelInfoOut3.Text = p.d.o.dir.x;
+                fq.labelInfoProject2.Text = /*xText(*/p.p.name/*)*/;
+                fq.labelInfoCalculate3.Text = /*xText(*/p.d.c.filter.x/*)*/;
+                fq.labelInfoOut3.Text = /*xText(*/p.d.o.dir.x/*)*/;
             }
             {
-                fq.Width = Math.Max(fq.Width, 200 + TextRenderer.MeasureText(p.d.o.dir.x, fq.labelInfoOut3.Font).Width + 79);
+                //fq.Width = Math.Max(fq.Width, 200 + TextRenderer.MeasureText(p.d.o.dir.x, fq.labelInfoOut3.Font).Width + 79);
             }
             fq.StartPosition = FormStartPosition.CenterScreen;
-            fq.ShowDialog((IWin32Window)((Project)(p.p.p.Object)).DTE.MainWindow.LinkedWindowFrame);
+            fq.ShowDialog((IWin32Window)projectUtility.dte.MainWindow.LinkedWindowFrame);
             if (fq.r == formQuestionFtd.Result.none) return;
 
             
 
-            //check   3
-            p.f.check(p.e);
+            
+            p.f.check(p.e);          //check   3
 
 
 
@@ -86,9 +88,9 @@ namespace VisualStudioCppExtensions
 
 
 
-            //work
-            //dir
-            if (!p.e.full)
+
+
+            if (!p.e.full)          //work          //dir
             {
                 projectUtility.documentsRefresh();
                 string dn = projectUtility.dte.ActiveDocument?.Name;
@@ -100,15 +102,14 @@ namespace VisualStudioCppExtensions
 
 
 
-            //error
-            if (p.e.full)
+            
+            if (p.e.full)          //error
             {
-                formError fe = new formError();
+                formError fe = new();
                 fe.textBox.Text = p.e.ToString();
                 fe.StartPosition = FormStartPosition.CenterScreen;
                 fe.ShowDialog((IWin32Window)projectUtility.dte.MainWindow.LinkedWindowFrame);
             }
-
         }
     }
 }

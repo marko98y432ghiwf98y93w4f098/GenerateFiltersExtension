@@ -6,23 +6,8 @@
     <SharedGUID>e85de64f-d3dc-4d22-89b7-cda7311e1335</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>cppFiltersAutoShared</Import_RootNamespace>
+    <Import_RootNamespace>temp</Import_RootNamespace>
   </PropertyGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)resource\resource.resx" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)source\gui\advanced.resx">
-      <DependentUpon>advanced.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)source\gui\error.resx">
-      <DependentUpon>error.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)source\gui\question.resx">
-      <DependentUpon>question.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)source\gui\questionFtd.resx">
-      <DependentUpon>questionFtd.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)source\gui\advanced.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)source\gui\advanced.Designer.cs">
@@ -52,10 +37,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)source\other\test\vc\projectReference.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)source\other\unused\project.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)source\other\unused\xml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\other\using.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)source\source\main\main.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)source\source\main\main2.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)source\source\utility\extension.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)source\source\utility\path.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)source\source\utility\project.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)source\source\work\dirToFilter\data.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)source\source\work\dirToFilter\utility\filters.cs" />
@@ -69,6 +56,21 @@
     <Compile Include="$(MSBuildThisFileDirectory)source\source\work\shared\file.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)source\source\work\shared\filter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)source\source\work\shared\project.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)resource\resource.resx" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)source\gui\advanced.resx">
+      <DependentUpon>advanced.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)source\gui\error.resx">
+      <DependentUpon>error.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)source\gui\question.resx">
+      <DependentUpon>question.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)source\gui\questionFtd.resx">
+      <DependentUpon>questionFtd.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)resource\package.ico" />

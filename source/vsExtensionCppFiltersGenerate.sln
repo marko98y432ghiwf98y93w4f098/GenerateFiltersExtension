@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2017", "other\2017\2017.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2019", "other\2019\2019.csproj", "{1FEF684B-F519-4AED-A771-0DC642CD8F38}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared", "shared", "{89483489-E772-48CF-A597-565479FFE517}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,6 +62,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{E85DE64F-D3DC-4D22-89B7-CDA7311E1335} = {89483489-E772-48CF-A597-565479FFE517}
 		{18555A86-3A5F-4D33-8C12-01E288BDC310} = {636B0FC0-3831-4E37-8366-FF32ADE53404}
 		{18555A86-3A5F-4D33-8C12-01E288BDC30F} = {636B0FC0-3831-4E37-8366-FF32ADE53404}
 		{1FEF684B-F519-4AED-A771-0DC642CD8F38} = {636B0FC0-3831-4E37-8366-FF32ADE53404}
@@ -68,10 +71,10 @@ Global
 		SolutionGuid = {B0D51C1E-B8EB-49FB-9285-7A3D86E32E93}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		shared\project\cppFiltersAutoShared.projitems*{18555a86-3a5f-4d33-8c12-01e288bdc30e}*SharedItemsImports = 4
-		shared\project\cppFiltersAutoShared.projitems*{18555a86-3a5f-4d33-8c12-01e288bdc30f}*SharedItemsImports = 4
-		shared\project\cppFiltersAutoShared.projitems*{18555a86-3a5f-4d33-8c12-01e288bdc310}*SharedItemsImports = 4
-		shared\project\cppFiltersAutoShared.projitems*{1fef684b-f519-4aed-a771-0dc642cd8f38}*SharedItemsImports = 4
-		shared\project\cppFiltersAutoShared.projitems*{e85de64f-d3dc-4d22-89b7-cda7311e1335}*SharedItemsImports = 13
+		shared\project\shared.projitems*{18555a86-3a5f-4d33-8c12-01e288bdc30e}*SharedItemsImports = 4
+		shared\project\shared.projitems*{18555a86-3a5f-4d33-8c12-01e288bdc30f}*SharedItemsImports = 4
+		shared\project\shared.projitems*{18555a86-3a5f-4d33-8c12-01e288bdc310}*SharedItemsImports = 4
+		shared\project\shared.projitems*{1fef684b-f519-4aed-a771-0dc642cd8f38}*SharedItemsImports = 4
+		shared\project\shared.projitems*{e85de64f-d3dc-4d22-89b7-cda7311e1335}*SharedItemsImports = 13
 	EndGlobalSection
 EndGlobal
