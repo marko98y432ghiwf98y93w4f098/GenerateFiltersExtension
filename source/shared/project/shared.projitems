@@ -9,53 +9,55 @@
     <Import_RootNamespace>temp</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)source\other\using\runtime\api\w32.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)source\gui\advanced.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)source\gui\advanced.Designer.cs">
-      <DependentUpon>advanced.cs</DependentUpon>
-    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)source\gui\advanced.Designer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)source\gui\error.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)source\gui\error.Designer.cs">
-      <DependentUpon>error.cs</DependentUpon>
-    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)source\gui\error.Designer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)source\gui\question.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)source\gui\question.Designer.cs">
-      <DependentUpon>question.cs</DependentUpon>
-    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)source\gui\question.Designer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)source\gui\questionFtd.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)source\gui\questionFtd.Designer.cs">
-      <DependentUpon>questionFtd.cs</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)source\other\test\dte\document.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)source\other\test\dte\dte.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)source\other\test\dte\project.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)source\other\test\dte\projectItem.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)source\other\test\other.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)source\other\test\vc\file.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)source\other\test\vc\filter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)source\other\test\vc\project.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)source\other\test\vc\projectEngine.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)source\other\test\vc\projectReference.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)source\other\unused\project.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)source\other\unused\xml.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)source\other\using.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)source\source\main\main.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)source\source\main\main2.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)source\source\utility\extension.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)source\source\utility\project.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)source\source\work\dirToFilter\data.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)source\source\work\dirToFilter\utility\filters.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)source\source\work\dirToFilter\work.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)source\source\work\filterToDir\data.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)source\source\work\filterToDir\utility\dir.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)source\source\work\filterToDir\utility\dir.dir2.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)source\source\work\filterToDir\utility\dir.file2.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)source\source\work\filterToDir\work.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)source\source\work\shared\error.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)source\source\work\shared\file.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)source\source\work\shared\filter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)source\source\work\shared\project.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\gui\questionFtd.Designer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\other\other\test\dte\document.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\other\other\test\dte\dte.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\other\other\test\dte\project.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\other\other\test\dte\projectItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\other\other\test\other.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\other\other\test\vc\file.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\other\other\test\vc\filter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\other\other\test\vc\project.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\other\other\test\vc\projectEngine.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\other\other\test\vc\projectReference.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\other\other\unused\project.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\other\other\unused\xml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\other\using\runtime\gui\control\main\form\form2.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\other\using\runtime\gui\control\other\size\label.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\other\using\runtime\gui\control\other\size\textBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\other\using\runtime\gui\scale\control\align.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\other\using\runtime\gui\scale\control\control.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\other\using\runtime\gui\scale\control\font\font.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\other\using\runtime\gui\scale\control\scale.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\other\using\runtime\gui\scale\dpi\dpi   2.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\other\using\runtime\gui\scale\dpi\dpi.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\other\using\runtime\gui\scale\scale.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\other\using\runtime\other\extension\1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\other\using\runtime\other\other\old\old.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\other\using\runtime\other\utility\path.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\work\main\main.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\work\main\main2.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\work\utility\project.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\work\work\dirToFilter\data.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\work\work\dirToFilter\utility\filters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\work\work\dirToFilter\work.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\work\work\filterToDir\data.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\work\work\filterToDir\utility\dir.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\work\work\filterToDir\utility\dir.dir2.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\work\work\filterToDir\utility\dir.file2.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\work\work\filterToDir\work.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\work\work\shared\utility\error.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\work\work\shared\utility\file.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\work\work\shared\utility\filter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)source\work\work\shared\utility\project.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)resource\resource.resx" />

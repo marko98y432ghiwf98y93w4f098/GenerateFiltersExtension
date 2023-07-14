@@ -1,6 +1,6 @@
 ﻿using u.forms.label;
 
-namespace VisualStudioCppExtensions
+namespace extension
 {
     partial class formQuestion
     {
@@ -36,18 +36,18 @@ namespace VisualStudioCppExtensions
             labelQuestion = new System.Windows.Forms.Label();
             labelInfoProject2 = new System.Windows.Forms.Label();
             labelQuestionMark = new System.Windows.Forms.Label();
-            labelInfoProject = new labelAlign();
-            labelInfoCalculate2 = new labelAlign();
-            labelInfoOut2 = new labelAlign();
+            labelInfoProject = new label2();
+            labelInfoCalculate2 = new label2();
+            labelInfoOut2 = new label2();
             labelInfoOut3 = new System.Windows.Forms.Label();
             labelInfoCalculate3 = new System.Windows.Forms.Label();
             labelWarning = new System.Windows.Forms.Label();
             groupBoxQuestion = new System.Windows.Forms.GroupBox();
             labelWarning2 = new System.Windows.Forms.Label();
             labelWarning3 = new System.Windows.Forms.Label();
-            labelInfoIn = new labelAlign();
-            labelInfoCalculate = new labelAlign();
-            labelInfoOut = new labelAlign();
+            labelInfoIn = new label2();
+            labelInfoCalculate = new label2();
+            labelInfoOut = new label2();
             labelInfoIn2 = new System.Windows.Forms.Label();
             labelWarning4 = new System.Windows.Forms.Label();
             groupBoxQuestion.SuspendLayout();
@@ -103,10 +103,9 @@ namespace VisualStudioCppExtensions
             // 
             // labelInfoProject
             // 
-            labelInfoProject.AutoSize = true;
             labelInfoProject.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
             labelInfoProject.Location = new System.Drawing.Point(24, 31);
-            labelInfoProject.Name = "labelInfoFroject";
+            labelInfoProject.Name = "labelInfoProject";
             labelInfoProject.Size = new System.Drawing.Size(55, 13);
             labelInfoProject.TabIndex = 2;
             labelInfoProject.Text = "project:";
@@ -114,7 +113,6 @@ namespace VisualStudioCppExtensions
             // 
             // labelInfoCalculate2
             // 
-            labelInfoCalculate2.AutoSize = true;
             labelInfoCalculate2.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
             labelInfoCalculate2.Location = new System.Drawing.Point(121, 86);
             labelInfoCalculate2.Name = "labelInfoCalculate2";
@@ -125,7 +123,6 @@ namespace VisualStudioCppExtensions
             // 
             // labelInfoOut2
             // 
-            labelInfoOut2.AutoSize = true;
             labelInfoOut2.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
             labelInfoOut2.Location = new System.Drawing.Point(103, 108);
             labelInfoOut2.Name = "labelInfoOut2";
@@ -190,7 +187,6 @@ namespace VisualStudioCppExtensions
             // 
             // labelInfoIn
             // 
-            labelInfoIn.AutoSize = true;
             labelInfoIn.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
             labelInfoIn.Location = new System.Drawing.Point(54, 64);
             labelInfoIn.Name = "labelInfoIn";
@@ -201,7 +197,6 @@ namespace VisualStudioCppExtensions
             // 
             // labelInfoCalculate
             // 
-            labelInfoCalculate.AutoSize = true;
             labelInfoCalculate.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
             labelInfoCalculate.Location = new System.Drawing.Point(12, 86);
             labelInfoCalculate.Name = "labelInfoCalculate";
@@ -212,7 +207,6 @@ namespace VisualStudioCppExtensions
             // 
             // labelInfoOut
             // 
-            labelInfoOut.AutoSize = true;
             labelInfoOut.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
             labelInfoOut.Location = new System.Drawing.Point(48, 108);
             labelInfoOut.Name = "labelInfoOut";
@@ -266,6 +260,7 @@ namespace VisualStudioCppExtensions
             Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "formQuestion";
+            MouseDown += formQuestionMouseDown;
             groupBoxQuestion.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
@@ -277,20 +272,20 @@ namespace VisualStudioCppExtensions
         private System.Windows.Forms.Label labelQuestionMark;
         public System.Windows.Forms.Label labelQuestion;
         public System.Windows.Forms.Label labelInfoProject2;
-        public System.Windows.Forms.Label labelInfoProject;
-        public System.Windows.Forms.Label labelInfoCalculate2;
-        public System.Windows.Forms.Label labelInfoOut2;
         public System.Windows.Forms.Label labelInfoOut3;
         public System.Windows.Forms.Label labelInfoCalculate3;
         public System.Windows.Forms.Label labelWarning;
         public System.Windows.Forms.Label labelWarning2;
         public System.Windows.Forms.Label labelWarning3;
-        public System.Windows.Forms.Label labelInfoIn;
-        public System.Windows.Forms.Label labelInfoCalculate;
-        public System.Windows.Forms.Label labelInfoOut;
         public System.Windows.Forms.Label labelInfoIn2;
         public System.Windows.Forms.Label labelWarning4;
         public System.Windows.Forms.Button buttonAdvanced;
         public System.Windows.Forms.GroupBox groupBoxQuestion;
+        public label2 labelInfoProject;
+        public label2 labelInfoCalculate2;
+        public label2 labelInfoOut2;
+        public label2 labelInfoIn;
+        public label2 labelInfoCalculate;
+        public label2 labelInfoOut;
     }
 }

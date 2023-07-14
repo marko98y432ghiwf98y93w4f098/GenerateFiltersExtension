@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using u;
 using u.forms.form;
 
-namespace VisualStudioCppExtensions
+namespace extension
 {
     public partial class formAdvanced : form2
     {
@@ -24,7 +24,80 @@ namespace VisualStudioCppExtensions
 
 
 
-        public formAdvanced() { InitializeComponent(); textBoxResult.TabStop = false; this.xScale(); }
+        public formAdvanced()
+        {
+            InitializeComponent();
+            textBoxResult.TabStop = false;
+
+            {
+                var x = this.xControl();
+                x.x[0].xs = x.x[1].xs = 0.9609803444828163;
+            }
+            this.xScale();
+
+            this.MouseWheel += fMouseWheel;
+        }
+
+
+        private void fMouseWheel(object sender, MouseEventArgs e)
+        {
+            if (e.Delta > 0)
+                this.xControl().x[1].xs *= 1.01;
+            else
+                this.xControl().x[1].xs /= 1.01;
+            this.xScale(null, System.Windows.Forms.Cursor.Position);
+        }
+
+        private void formAdvancedMouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Middle) this.xScale2(System.Windows.Forms.Cursor.Position);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -44,12 +117,55 @@ namespace VisualStudioCppExtensions
 
         private void checkBoxRootFilterCheckedChanged(object sender, EventArgs e) => textBoxRootFilter.Enabled = checkBoxRootFilter.Checked;
 
+        private void calculateMenuItemClicked(object sender, ToolStripItemClickedEventArgs e) => textBoxRootDir.Text = (string)e.ClickedItem.Tag;
 
 
 
 
 
-        public void error(string s) => textBoxResult.Text = s;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        private void error(string s) => textBoxResult.Text = s;
 
         private void formAdvancedFormClosing(object sender, FormClosingEventArgs e)
         {
@@ -59,10 +175,10 @@ namespace VisualStudioCppExtensions
             try
             {
                 if (!radioButtonInProject.Checked)
-                    if (!Directory.Exists(textBoxIn.Text)) throw new Exception("in dir is not valid");
-                if (!Directory.Exists(textBoxRootDir.Text)) throw new Exception("root dir is not valid");
+                    if (!Directory.Exists(textBoxIn.Text)) throw new("in dir is not valid");
+                if (!Directory.Exists(textBoxRootDir.Text)) throw new("root dir is not valid");
                 if (checkBoxRootFilter.Checked)
-                    if (!dirToFilter.ProjectData.Data.filterCheck(textBoxRootFilter.Text)) throw new Exception("root filter is not valid");
+                    if (!dirToFilter.ProjectData.Data.filterCheck(textBoxRootFilter.Text)) throw new("root filter is not valid");
             }
             catch (Exception e2)
             {
@@ -72,6 +188,43 @@ namespace VisualStudioCppExtensions
             }
 
         }
+
+        protected override bool ProcessDialogKey(Keys keyData)
+        {
+            if (Form.ModifierKeys != Keys.None || keyData != Keys.Escape) return base.ProcessDialogKey(keyData);
+            r = Result.none;
+            this.Close();
+            return true;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -97,15 +250,12 @@ namespace VisualStudioCppExtensions
         private void buttonInClick(object sender, EventArgs e) => dialogShow(textBoxIn);
         private void buttonCalculateClick(object sender, EventArgs e) => dialogShow(textBoxRootDir);
 
-
-
-
-
         private void buttonOkClick(object sender, EventArgs e)
         {
             r = Result.ok;
             this.Close();
         }
+
 
 
         public dirToFilter.ProjectData p;
@@ -114,19 +264,5 @@ namespace VisualStudioCppExtensions
             dirToFilter.filters2.filtersDeleteAll(p.p.p);
             p.f.filesGet(p);
         }
-
-
-        private void calculateMenuItemClicked(object sender, ToolStripItemClickedEventArgs e) => textBoxRootDir.Text = (string)e.ClickedItem.Tag;
-
-
-        protected override bool ProcessDialogKey(Keys keyData)
-        {
-            if (Form.ModifierKeys != Keys.None || keyData != Keys.Escape) return base.ProcessDialogKey(keyData);
-            r = Result.none;
-            this.Close();
-            return true;
-        }
     }
-
-
 }

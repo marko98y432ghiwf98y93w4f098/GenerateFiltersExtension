@@ -1,4 +1,4 @@
-﻿namespace VisualStudioCppExtensions
+﻿namespace extension
 {
     partial class formAdvanced
     {
@@ -64,36 +64,36 @@
             // textBoxRootDir
             // 
             textBoxRootDir.ContextMenuStrip = calculateMenu;
-            textBoxRootDir.Location = new System.Drawing.Point(12, 297);
+            textBoxRootDir.Location = new System.Drawing.Point(11, 282);
             textBoxRootDir.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             textBoxRootDir.Name = "textBoxRootDir";
-            textBoxRootDir.Size = new System.Drawing.Size(808, 22);
+            textBoxRootDir.Size = new System.Drawing.Size(767, 21);
             textBoxRootDir.TabIndex = 1;
             // 
             // calculateMenu
             // 
-            calculateMenu.Font = new System.Drawing.Font("Consolas", 9F);
+            calculateMenu.Font = new System.Drawing.Font("Consolas", 8.54F);
             calculateMenu.Name = "calculateMenu";
             calculateMenu.Size = new System.Drawing.Size(61, 4);
             calculateMenu.ItemClicked += calculateMenuItemClicked;
             // 
             // labelRootDir
             // 
-            labelRootDir.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            labelRootDir.Location = new System.Drawing.Point(10, 278);
+            labelRootDir.Font = new System.Drawing.Font("Consolas", 8.54F, System.Drawing.FontStyle.Bold);
+            labelRootDir.Location = new System.Drawing.Point(9, 264);
             labelRootDir.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelRootDir.Name = "labelRootDir";
-            labelRootDir.Size = new System.Drawing.Size(77, 14);
+            labelRootDir.Size = new System.Drawing.Size(73, 13);
             labelRootDir.TabIndex = 4;
             labelRootDir.Text = "root   dir";
             // 
             // buttonCaluculate
             // 
             buttonCaluculate.ContextMenuStrip = calculateMenu;
-            buttonCaluculate.Location = new System.Drawing.Point(708, 239);
+            buttonCaluculate.Location = new System.Drawing.Point(672, 227);
             buttonCaluculate.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonCaluculate.Name = "buttonCaluculate";
-            buttonCaluculate.Size = new System.Drawing.Size(111, 52);
+            buttonCaluculate.Size = new System.Drawing.Size(105, 49);
             buttonCaluculate.TabIndex = 4;
             buttonCaluculate.Text = "browse";
             buttonCaluculate.UseVisualStyleBackColor = true;
@@ -102,20 +102,20 @@
             // textBoxRootFilter
             // 
             textBoxRootFilter.Enabled = false;
-            textBoxRootFilter.Location = new System.Drawing.Point(10, 516);
+            textBoxRootFilter.Location = new System.Drawing.Point(9, 490);
             textBoxRootFilter.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             textBoxRootFilter.Name = "textBoxRootFilter";
-            textBoxRootFilter.Size = new System.Drawing.Size(806, 22);
+            textBoxRootFilter.Size = new System.Drawing.Size(765, 21);
             textBoxRootFilter.TabIndex = 3;
             textBoxRootFilter.Text = "/source/";
             // 
             // checkBoxRootFilter
             // 
-            checkBoxRootFilter.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            checkBoxRootFilter.Location = new System.Drawing.Point(10, 497);
+            checkBoxRootFilter.Font = new System.Drawing.Font("Consolas", 8.54F, System.Drawing.FontStyle.Bold);
+            checkBoxRootFilter.Location = new System.Drawing.Point(9, 472);
             checkBoxRootFilter.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             checkBoxRootFilter.Name = "checkBoxRootFilter";
-            checkBoxRootFilter.Size = new System.Drawing.Size(131, 18);
+            checkBoxRootFilter.Size = new System.Drawing.Size(124, 17);
             checkBoxRootFilter.TabIndex = 2;
             checkBoxRootFilter.Text = "[root   filter]";
             checkBoxRootFilter.UseVisualStyleBackColor = true;
@@ -123,11 +123,11 @@
             // 
             // buttonOk
             // 
-            buttonOk.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            buttonOk.Location = new System.Drawing.Point(7, 620);
+            buttonOk.Font = new System.Drawing.Font("Consolas", 9.26F);
+            buttonOk.Location = new System.Drawing.Point(7, 627);
             buttonOk.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonOk.Name = "buttonOk";
-            buttonOk.Size = new System.Drawing.Size(154, 47);
+            buttonOk.Size = new System.Drawing.Size(146, 45);
             buttonOk.TabIndex = 0;
             buttonOk.Text = "ok";
             buttonOk.UseVisualStyleBackColor = true;
@@ -136,30 +136,31 @@
             // textBoxResult
             // 
             textBoxResult.BackColor = System.Drawing.SystemColors.Window;
-            textBoxResult.Location = new System.Drawing.Point(168, 620);
+            textBoxResult.Font = new System.Drawing.Font("Consolas", 8.54F);
+            textBoxResult.Location = new System.Drawing.Point(159, 627);
             textBoxResult.Multiline = true;
             textBoxResult.Name = "textBoxResult";
             textBoxResult.ReadOnly = true;
             textBoxResult.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            textBoxResult.Size = new System.Drawing.Size(654, 47);
+            textBoxResult.Size = new System.Drawing.Size(621, 45);
             textBoxResult.TabIndex = 5;
             // 
             // textBoxIn
             // 
             textBoxIn.Enabled = false;
-            textBoxIn.Location = new System.Drawing.Point(10, 122);
+            textBoxIn.Location = new System.Drawing.Point(9, 116);
             textBoxIn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             textBoxIn.Name = "textBoxIn";
-            textBoxIn.Size = new System.Drawing.Size(809, 22);
+            textBoxIn.Size = new System.Drawing.Size(768, 21);
             textBoxIn.TabIndex = 6;
             // 
             // buttonIn
             // 
             buttonIn.Enabled = false;
-            buttonIn.Location = new System.Drawing.Point(708, 66);
+            buttonIn.Location = new System.Drawing.Point(672, 63);
             buttonIn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonIn.Name = "buttonIn";
-            buttonIn.Size = new System.Drawing.Size(111, 52);
+            buttonIn.Size = new System.Drawing.Size(105, 49);
             buttonIn.TabIndex = 7;
             buttonIn.Text = "browse";
             buttonIn.UseVisualStyleBackColor = true;
@@ -168,10 +169,10 @@
             // radioButtonInProject
             // 
             radioButtonInProject.Checked = true;
-            radioButtonInProject.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            radioButtonInProject.Location = new System.Drawing.Point(10, 59);
+            radioButtonInProject.Font = new System.Drawing.Font("Consolas", 8.54F, System.Drawing.FontStyle.Bold);
+            radioButtonInProject.Location = new System.Drawing.Point(9, 56);
             radioButtonInProject.Name = "radioButtonInProject";
-            radioButtonInProject.Size = new System.Drawing.Size(130, 18);
+            radioButtonInProject.Size = new System.Drawing.Size(123, 17);
             radioButtonInProject.TabIndex = 8;
             radioButtonInProject.TabStop = true;
             radioButtonInProject.Text = "project   whole";
@@ -180,9 +181,10 @@
             // 
             // radioButtonInDir
             // 
-            radioButtonInDir.Location = new System.Drawing.Point(10, 101);
+            radioButtonInDir.Font = new System.Drawing.Font("Consolas", 8.54F);
+            radioButtonInDir.Location = new System.Drawing.Point(9, 96);
             radioButtonInDir.Name = "radioButtonInDir";
-            radioButtonInDir.Size = new System.Drawing.Size(46, 18);
+            radioButtonInDir.Size = new System.Drawing.Size(44, 17);
             radioButtonInDir.TabIndex = 9;
             radioButtonInDir.Text = "dir";
             radioButtonInDir.UseVisualStyleBackColor = true;
@@ -190,9 +192,9 @@
             // 
             // radioButtonInDirSubDir
             // 
-            radioButtonInDirSubDir.Location = new System.Drawing.Point(10, 80);
+            radioButtonInDirSubDir.Location = new System.Drawing.Point(9, 76);
             radioButtonInDirSubDir.Name = "radioButtonInDirSubDir";
-            radioButtonInDirSubDir.Size = new System.Drawing.Size(158, 18);
+            radioButtonInDirSubDir.Size = new System.Drawing.Size(150, 17);
             radioButtonInDirSubDir.TabIndex = 10;
             radioButtonInDirSubDir.Text = "dir   and   subDirs";
             radioButtonInDirSubDir.UseVisualStyleBackColor = true;
@@ -200,61 +202,61 @@
             // 
             // labelIn
             // 
-            labelIn.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
+            labelIn.Font = new System.Drawing.Font("Consolas", 13.53F, System.Drawing.FontStyle.Bold);
             labelIn.Location = new System.Drawing.Point(6, 3);
             labelIn.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelIn.Name = "labelIn";
-            labelIn.Size = new System.Drawing.Size(40, 22);
+            labelIn.Size = new System.Drawing.Size(38, 21);
             labelIn.TabIndex = 11;
             labelIn.Text = "in";
             // 
             // labelCalculate
             // 
-            labelCalculate.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            labelCalculate.Location = new System.Drawing.Point(6, 222);
+            labelCalculate.Font = new System.Drawing.Font("Consolas", 13.53F, System.Drawing.FontStyle.Bold);
+            labelCalculate.Location = new System.Drawing.Point(6, 211);
             labelCalculate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelCalculate.Name = "labelCalculate";
-            labelCalculate.Size = new System.Drawing.Size(110, 22);
+            labelCalculate.Size = new System.Drawing.Size(104, 21);
             labelCalculate.TabIndex = 12;
             labelCalculate.Text = "calculate";
             // 
             // labelOut
             // 
-            labelOut.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            labelOut.Location = new System.Drawing.Point(6, 441);
+            labelOut.Font = new System.Drawing.Font("Consolas", 13.53F, System.Drawing.FontStyle.Bold);
+            labelOut.Location = new System.Drawing.Point(6, 419);
             labelOut.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelOut.Name = "labelOut";
-            labelOut.Size = new System.Drawing.Size(50, 22);
+            labelOut.Size = new System.Drawing.Size(47, 21);
             labelOut.TabIndex = 13;
             labelOut.Text = "out";
             // 
             // labelIn2
             // 
-            labelIn2.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            labelIn2.Location = new System.Drawing.Point(7, 40);
+            labelIn2.Font = new System.Drawing.Font("Consolas", 8.54F);
+            labelIn2.Location = new System.Drawing.Point(7, 38);
             labelIn2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelIn2.Name = "labelIn2";
-            labelIn2.Size = new System.Drawing.Size(140, 14);
+            labelIn2.Size = new System.Drawing.Size(133, 13);
             labelIn2.TabIndex = 14;
             labelIn2.Text = "input files are in:";
             // 
             // labelCalculate2
             // 
-            labelCalculate2.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            labelCalculate2.Location = new System.Drawing.Point(7, 259);
+            labelCalculate2.Font = new System.Drawing.Font("Consolas", 8.54F);
+            labelCalculate2.Location = new System.Drawing.Point(7, 246);
             labelCalculate2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelCalculate2.Name = "labelCalculate2";
-            labelCalculate2.Size = new System.Drawing.Size(266, 14);
+            labelCalculate2.Size = new System.Drawing.Size(253, 13);
             labelCalculate2.TabIndex = 15;
             labelCalculate2.Text = "1.   filters are named as subDirs of:";
             // 
             // labelOut2
             // 
-            labelOut2.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            labelOut2.Location = new System.Drawing.Point(7, 478);
+            labelOut2.Font = new System.Drawing.Font("Consolas", 8.54F);
+            labelOut2.Location = new System.Drawing.Point(7, 454);
             labelOut2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelOut2.Name = "labelOut2";
-            labelOut2.Size = new System.Drawing.Size(189, 14);
+            labelOut2.Size = new System.Drawing.Size(179, 13);
             labelOut2.TabIndex = 16;
             labelOut2.Text = "filters are placed out to:";
             // 
@@ -263,9 +265,9 @@
             checkBoxCalculateDeleteFilters.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             checkBoxCalculateDeleteFilters.Checked = true;
             checkBoxCalculateDeleteFilters.CheckState = System.Windows.Forms.CheckState.Checked;
-            checkBoxCalculateDeleteFilters.Location = new System.Drawing.Point(7, 334);
+            checkBoxCalculateDeleteFilters.Location = new System.Drawing.Point(7, 317);
             checkBoxCalculateDeleteFilters.Name = "checkBoxCalculateDeleteFilters";
-            checkBoxCalculateDeleteFilters.Size = new System.Drawing.Size(285, 18);
+            checkBoxCalculateDeleteFilters.Size = new System.Drawing.Size(271, 17);
             checkBoxCalculateDeleteFilters.TabIndex = 17;
             checkBoxCalculateDeleteFilters.Text = "2.   delete already empty filters:   ";
             checkBoxCalculateDeleteFilters.UseVisualStyleBackColor = true;
@@ -278,8 +280,9 @@
             tabControlMain.Location = new System.Drawing.Point(0, 0);
             tabControlMain.Name = "tabControlMain";
             tabControlMain.SelectedIndex = 0;
-            tabControlMain.Size = new System.Drawing.Size(837, 698);
+            tabControlMain.Size = new System.Drawing.Size(793, 698);
             tabControlMain.TabIndex = 18;
+            tabControlMain.MouseDown += formAdvancedMouseDown;
             // 
             // tabPageGenerate
             // 
@@ -302,32 +305,35 @@
             tabPageGenerate.Controls.Add(radioButtonInDir);
             tabPageGenerate.Controls.Add(buttonIn);
             tabPageGenerate.Controls.Add(radioButtonInProject);
-            tabPageGenerate.Location = new System.Drawing.Point(4, 23);
+            tabPageGenerate.Location = new System.Drawing.Point(4, 22);
             tabPageGenerate.Name = "tabPageGenerate";
             tabPageGenerate.Padding = new System.Windows.Forms.Padding(3);
-            tabPageGenerate.Size = new System.Drawing.Size(829, 671);
+            tabPageGenerate.Size = new System.Drawing.Size(785, 672);
             tabPageGenerate.TabIndex = 1;
             tabPageGenerate.Text = "generate";
             tabPageGenerate.UseVisualStyleBackColor = true;
+            tabPageGenerate.MouseDown += formAdvancedMouseDown;
             // 
             // tabPageOther
             // 
             tabPageOther.Controls.Add(buttonCalculateFiltersDeleteAll);
             tabPageOther.Controls.Add(label1);
-            tabPageOther.Location = new System.Drawing.Point(4, 23);
+            tabPageOther.Location = new System.Drawing.Point(4, 22);
             tabPageOther.Name = "tabPageOther";
             tabPageOther.Padding = new System.Windows.Forms.Padding(3);
-            tabPageOther.Size = new System.Drawing.Size(829, 711);
+            tabPageOther.Size = new System.Drawing.Size(785, 672);
             tabPageOther.TabIndex = 0;
             tabPageOther.Text = "other";
             tabPageOther.UseVisualStyleBackColor = true;
+            tabPageOther.MouseDown += formAdvancedMouseDown;
             // 
             // buttonCalculateFiltersDeleteAll
             // 
-            buttonCalculateFiltersDeleteAll.Location = new System.Drawing.Point(7, 259);
+            buttonCalculateFiltersDeleteAll.Font = new System.Drawing.Font("Consolas", 8.54F);
+            buttonCalculateFiltersDeleteAll.Location = new System.Drawing.Point(7, 246);
             buttonCalculateFiltersDeleteAll.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonCalculateFiltersDeleteAll.Name = "buttonCalculateFiltersDeleteAll";
-            buttonCalculateFiltersDeleteAll.Size = new System.Drawing.Size(165, 54);
+            buttonCalculateFiltersDeleteAll.Size = new System.Drawing.Size(157, 51);
             buttonCalculateFiltersDeleteAll.TabIndex = 14;
             buttonCalculateFiltersDeleteAll.Text = "delete all filters";
             buttonCalculateFiltersDeleteAll.UseVisualStyleBackColor = true;
@@ -335,29 +341,31 @@
             // 
             // label1
             // 
-            label1.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            label1.Location = new System.Drawing.Point(6, 222);
+            label1.Font = new System.Drawing.Font("Consolas", 13.53F, System.Drawing.FontStyle.Bold);
+            label1.Location = new System.Drawing.Point(6, 211);
             label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(110, 22);
+            label1.Size = new System.Drawing.Size(104, 21);
             label1.TabIndex = 13;
             label1.Text = "calculate";
             // 
             // formAdvanced
             // 
             AcceptButton = buttonOk;
-            AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(837, 698);
+            ClientSize = new System.Drawing.Size(793, 698);
             Controls.Add(tabControlMain);
             DoubleBuffered = true;
-            Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            Font = new System.Drawing.Font("Consolas", 8.54F);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
             Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             MaximizeBox = false;
+            MaximumSize = new System.Drawing.Size(7000, 6614);
             Name = "formAdvanced";
             FormClosing += formAdvancedFormClosing;
+            MouseDown += formAdvancedMouseDown;
             tabControlMain.ResumeLayout(false);
             tabPageGenerate.ResumeLayout(false);
             tabPageOther.ResumeLayout(false);
