@@ -4,7 +4,7 @@
 
 
 
-namespace u.forms.textBox
+namespace u.forms.control
 {
     public class textBox2 : TextBox          //textBox
     {

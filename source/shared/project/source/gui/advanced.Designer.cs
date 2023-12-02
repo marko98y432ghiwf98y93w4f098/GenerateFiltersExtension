@@ -30,16 +30,16 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formAdvanced));
-            textBoxRootDir = new u.forms.textBox.textBox2();
+            textBoxRootDir = new u.forms.control.textBox2();
             calculateMenu = new System.Windows.Forms.ContextMenuStrip(components);
             labelRootDir = new System.Windows.Forms.Label();
             buttonCaluculate = new System.Windows.Forms.Button();
-            textBoxRootFilter = new u.forms.textBox.textBox2();
+            textBoxRootFilter = new u.forms.control.textBox2();
             checkBoxRootFilter = new System.Windows.Forms.CheckBox();
             buttonOk = new System.Windows.Forms.Button();
-            textBoxResult = new u.forms.textBox.textBox2();
+            textBoxResult = new u.forms.control.textBox2();
             dialogFolder = new System.Windows.Forms.FolderBrowserDialog();
-            textBoxIn = new u.forms.textBox.textBox2();
+            textBoxIn = new u.forms.control.textBox2();
             buttonIn = new System.Windows.Forms.Button();
             radioButtonInProject = new System.Windows.Forms.RadioButton();
             radioButtonInDir = new System.Windows.Forms.RadioButton();
@@ -282,7 +282,7 @@
             tabControlMain.SelectedIndex = 0;
             tabControlMain.Size = new System.Drawing.Size(793, 698);
             tabControlMain.TabIndex = 18;
-            tabControlMain.MouseDown += formAdvancedMouseDown;
+            tabControlMain.MouseDown += fMouseDown;
             // 
             // tabPageGenerate
             // 
@@ -312,7 +312,7 @@
             tabPageGenerate.TabIndex = 1;
             tabPageGenerate.Text = "generate";
             tabPageGenerate.UseVisualStyleBackColor = true;
-            tabPageGenerate.MouseDown += formAdvancedMouseDown;
+            tabPageGenerate.MouseDown += fMouseDown;
             // 
             // tabPageOther
             // 
@@ -325,7 +325,7 @@
             tabPageOther.TabIndex = 0;
             tabPageOther.Text = "other";
             tabPageOther.UseVisualStyleBackColor = true;
-            tabPageOther.MouseDown += formAdvancedMouseDown;
+            tabPageOther.MouseDown += fMouseDown;
             // 
             // buttonCalculateFiltersDeleteAll
             // 
@@ -365,7 +365,7 @@
             MaximumSize = new System.Drawing.Size(7000, 6614);
             Name = "formAdvanced";
             FormClosing += formAdvancedFormClosing;
-            MouseDown += formAdvancedMouseDown;
+            MouseDown += fMouseDown;
             tabControlMain.ResumeLayout(false);
             tabPageGenerate.ResumeLayout(false);
             tabPageOther.ResumeLayout(false);
@@ -395,9 +395,9 @@
         private System.Windows.Forms.Button buttonCalculateFiltersDeleteAll;
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.ContextMenuStrip calculateMenu;
-        public u.forms.textBox.textBox2 textBoxRootDir;
-        public u.forms.textBox.textBox2 textBoxRootFilter;
-        private u.forms.textBox.textBox2 textBoxResult;
-        public u.forms.textBox.textBox2 textBoxIn;
+        public u.forms.control.textBox2 textBoxRootDir;
+        public u.forms.control.textBox2 textBoxRootFilter;
+        private u.forms.control.textBox2 textBoxResult;
+        public u.forms.control.textBox2 textBoxIn;
     }
 }

@@ -39,22 +39,22 @@ namespace extension
 
 
             string kind = x.Kind;          //[VCFile]
-            //strings[0].Add(kind);
-            
+                                           //strings[0].Add(kind);
+
             string itemType = x.ItemType;          //[null, clInclude, none, clCompile]
                                                    //strings[1].Add(itemType);
 
-            #if (sVs2015 == false) 
+#if !s2015
             string contentType = x.ContentType;          //[Filters, cppHeader, "", cppCode]
-            #endif
+#endif
             //strings[2].Add(contentType);
 
             string fileType = x.FileType.ToString();          //enum     eFileType[Filters, CppHeader, Document, CppCode]
-            //strings[3].Add(fileType);
-            
+                                                              //strings[3].Add(fileType);
+
             string subType = x.SubType;          //[""]
-            //strings[4].Add(subType);
-            
+                                                 //strings[4].Add(subType);
+
             bool deploymentContent = x.DeploymentContent;          //false
 
 
@@ -89,7 +89,7 @@ namespace extension
 
 
 
-            
+
 
 
 

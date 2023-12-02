@@ -37,6 +37,36 @@ namespace u.other
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         public path(string x = null, separator s = null)
         {
             this.s = s ?? new();
@@ -62,21 +92,25 @@ namespace u.other
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         public string xJoin() => x = string.Join(s.s2.ToString(), x2);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -108,6 +142,38 @@ namespace u.other
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         public static path operator +(path x1, path x2) => path.oPlus(x1, x2);
         public static path operator +(path x1, string x2) => path.oPlus(x1, x2);
         public static path operator -(path x1, path x2) => path.oMinus(x1, x2);
@@ -116,36 +182,62 @@ namespace u.other
         public static bool operator !=(path x1, path x2) => !path.oEqual(x1, x2);*/
 
 
-        public static path oPlus(path x1, path x2, separator s = null)
+
+
+
+
+        static separator oInit(path x1, path x2, separator s = null)
         {
             if (x1.xNull()) return null;
             if (x2.xNull()) return null;
-            if (s == null) s = new separator();
+            s ??= new();
+            return s;
+        }
+
+        static int oCommon2(path x1, path x2)
+        {
+            int i = 0;
+            {
+                int i1 = Math.Min(x1.x2.Length, x2.x2.Length);
+                for (; i < i1; i++)
+                    if (string.Compare(x1.x2[i], x2.x2[i], StringComparison.OrdinalIgnoreCase) != 0) break;
+            }
+            return i;
+        }
+
+
+
+
+
+
+
+
+
+        public static path oPlus(path x1, path x2, separator s = null)
+        {
+            if ((s = oInit(x1, x2, s)) == null) return null;
 
             return new path(x1.x2.Concat(x2.x2).ToArray(), s);
         }
+
 
         public static path oPlus(path x1, string x2, separator s = null)
         {
             if (x1.xNull()) return null;
             if (x2.xE2()) return new path(x1.x2, x1.s);          //clone
-            if (s == null) s = new separator();
+            s ??= new();
 
             return new path(x1.x2.Append(x2).ToArray(), s);
         }
 
 
-
         public static path oMinus(path x1, path x2, separator s = null)
         {
-            if (x1.xNull()) return null;
-            if (x2.xNull()) return null;
-            if (s == null) s = new separator();
+            if ((s = oInit(x1, x2, s)) == null) return null;
 
             if (!(x1.x2.Length >= x2.x2.Length)) return null;
 
-            for (int i = 0; i < x2.x2.Length; i++)
-                if (string.Compare(x1.x2[i], x2.x2[i], StringComparison.OrdinalIgnoreCase) != 0) return null;
+            if (oCommon2(x1, x2) < x2.x2.Length) return null;
 
             return new path(x1.x2.Skip(x2.x2.Length).ToArray(), s);
         }
@@ -155,32 +247,20 @@ namespace u.other
 
 
 
+
+
         public static path oCommon(path x1, path x2, separator s = null)          //common
         {
-            if (x1.xNull()) return null;          //check
-            if (x2.xNull()) return null;
-            //s ??= new();
-            if (s == null) s = new();
+            if ((s = oInit(x1, x2, s)) == null) return null;
 
-
-
-            int i = 0;
-            {
-                int i1 = Math.Min(x1.x2.Length, x2.x2.Length);
-                for (; i < i1; i++)
-                    if (String.Compare(x1.x2[i], x2.x2[i], StringComparison.OrdinalIgnoreCase) != 0) break;
-            }
-
-            return new path(x1.x2.Take(i).ToArray(), s);
+            return new path(x1.x2.Take(oCommon2(x1, x2)).ToArray(), s);
         }
-
-
 
 
         public static path oCommon(string[] p, separator s = null)
         {
             if (p.xEmpty()) return null;          //check
-            if (s == null) s = new();
+            s ??= new();
 
 
 
@@ -204,6 +284,12 @@ namespace u.other
 
 
 
+
+
+
+
+
+
         public static bool oEqual(path x1, path x2)
         {
             bool b1 = !x1.xNull();
@@ -212,10 +298,6 @@ namespace u.other
             if (b1 ^ b2) return false;
             return x1.x.xC2(x2.x);
         }
-
-
-
-
 
 
         public path mUp()
@@ -242,6 +324,23 @@ namespace u.other
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         public override int GetHashCode() => x?.ToLower().GetHashCode() ?? 0;          //interface
 
         public override bool Equals(object x) => x != null && x is path x2 && path.oEqual(this, x2);
@@ -249,6 +348,34 @@ namespace u.other
         public override string ToString() => x;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

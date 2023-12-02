@@ -58,7 +58,7 @@ namespace extension
         
         public static void documentsRefresh()          //documents          //push   document tab lazy open
         {
-            foreach (Document x4 in dte.Documents) { }
+            try { foreach (Document x4 in dte.Documents) { } } catch { };
         }
 
 

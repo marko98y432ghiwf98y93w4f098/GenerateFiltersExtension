@@ -5,7 +5,7 @@ using System;
 using u.api;
 
 
-namespace u.forms
+namespace u.forms.scale
 {
     public static class dpi
     {

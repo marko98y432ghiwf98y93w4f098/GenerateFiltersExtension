@@ -1,5 +1,5 @@
 ﻿using System.Reflection.Emit;
-using u.forms.label;
+using u.forms.control;
 
 namespace extension
 {
@@ -278,7 +278,7 @@ namespace extension
             Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "formQuestionFtd";
-            MouseDown += formQuestionFtdMouseDown;
+            MouseDown += fMouseDown;
             groupBoxQuestion.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();

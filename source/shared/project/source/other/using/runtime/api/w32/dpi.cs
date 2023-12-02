@@ -1,13 +1,10 @@
 using System;
-using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Windows.Forms;
-using static u.api.w32.info;
 
 namespace u.api
 {
-    public class w32
+    public partial class w32
     {
         public class dpi
         {
@@ -333,97 +330,6 @@ namespace u.api
                     getDpiScaledSize = 0x2e4,          //10.1703
                 }
             }
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        public class info
-        {
-            [DllImport("ntdll.dll", CallingConvention = CallingConvention.StdCall)] public extern static int RtlGetVersion([In, Out] osVersion x);          //5.0
-
-
-            [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
-            public class osVersion
-            {
-                uint size = (uint)Marshal.SizeOf<osVersion>();
-                public uint v1;
-                public uint v2;
-                public uint v3;
-                public uint platform;
-                [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)] public string nameSp = null;
-            }
-        }
-
-
-        public class other
-        {
-            public enum message : uint
-            {
-                paintRedrawSet = 0x0b,
-                paint = 0x0f,
-                paintNc = 0x085,
-            }
-
-            [DllImport("user32.dll", CallingConvention = CallingConvention.StdCall)] public extern static int SendMessageW(IntPtr window, message m, uint x, uint x2);          //5.0
-
-            [DllImport("user32.dll", CallingConvention = CallingConvention.StdCall)] public extern static bool MoveWindow(IntPtr window, int x1, int y1, int x2, int y2, bool paint);          //5.0
         }
     }
 }

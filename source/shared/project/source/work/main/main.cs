@@ -13,17 +13,36 @@ namespace extension
 
 
 
-    [Guid(gui.packageGuid)]          //tag entry with attributes
+    [Guid(gui.packageGuid)]          //entry tagged by using attributes
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)]
-    [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
-    [ProvideAutoLoad(VSConstants.UICONTEXT.SolutionExistsAndFullyLoaded_string, PackageAutoLoadFlags.BackgroundLoad)]
+    [PackageRegistration(UseManagedResourcesOnly = true
+#if !s2013
+, AllowsBackgroundLoading = true
+#endif
+        )]
+    [ProvideAutoLoad(VSConstants.UICONTEXT.SolutionExistsAndFullyLoaded_string
+#if !s2013
+        , PackageAutoLoadFlags.BackgroundLoad
+#endif
+        )]
 
     [ProvideMenuResource("Menus.ctmenu", 1)]          //always
 
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
 
 
-    public sealed class main : AsyncPackage
+
+
+
+
+
+
+    public sealed class main
+#if !s2013
+        : AsyncPackage
+#else
+        : Package
+#endif
     {
 
 
@@ -40,7 +59,6 @@ namespace extension
 
 
 
-        
 
 
 
@@ -50,9 +68,13 @@ namespace extension
 
 
 
-        
 
+
+#if !s2013
         protected override async System.Threading.Tasks.Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
+#else
+        protected override void Initialize()
+#endif
         {
             try
             {
@@ -66,7 +88,9 @@ namespace extension
             {
             }
 
+#if !s2013
             await JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
+#endif
             main2.instance(this);
         }
     }

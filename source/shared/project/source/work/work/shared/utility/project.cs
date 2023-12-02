@@ -40,7 +40,7 @@ namespace extension
             }
 
             //public bool flagDirty { get => p.IsDirty; }
-            public bool flagVcxItems { get => dirFile.EndsWith(".vcxitems", StringComparison.OrdinalIgnoreCase); }
+            public bool flagVcxItems { get => dirFile.EndsWith(".vcxItems", StringComparison.OrdinalIgnoreCase); }
         }
 
 
