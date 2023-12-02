@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formError));
-            textBox = new u.forms.textBox.textBox2();
+            textBox = new u.forms.control.textBox2();
             SuspendLayout();
             // 
             // textBox
@@ -45,7 +45,7 @@
             textBox.TabIndex = 0;
             textBox.TabStop = false;
             textBox.WordWrap = false;
-            textBox.MouseDown += formErrorMouseDown;
+            textBox.MouseDown += fMouseDown;
             // 
             // formError
             // 
@@ -59,12 +59,12 @@
             MinimumSize = new System.Drawing.Size(200, 100);
             Name = "formError";
             Text = "error";
-            MouseDown += formErrorMouseDown;
+            MouseDown += fMouseDown;
             ResumeLayout(false);
         }
 
         #endregion
 
-        public u.forms.textBox.textBox2 textBox;
+        public u.forms.control.textBox2 textBox;
     }
 }

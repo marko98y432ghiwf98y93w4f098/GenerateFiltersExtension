@@ -16,12 +16,16 @@ namespace u
         public static bool xE(this string s) => string.IsNullOrEmpty(s);          //string
         public static bool xE2(this string x) => string.IsNullOrWhiteSpace(x);
 
+
         public static string xE(this string s, string s2) => string.IsNullOrEmpty(s) ? "" : s + s2;
 
 
         public static bool xC(this string x, string x2) => string.Equals(x, x2, StringComparison.Ordinal);
         
         public static bool xC2(this string x, string x2) => string.Equals(x, x2, StringComparison.OrdinalIgnoreCase);
+
+
+
 
 
 
@@ -54,6 +58,17 @@ namespace u
 
 
         public static bool xEmpty(this Array x) => x == null || x.Length == 0;          //array
+        public static void xNew(this Array x)
+        {
+            if (x.xEmpty()) return;
+           
+            Type t = x.GetType().GetElementType();
+            var t2 = t.GetConstructor(Type.EmptyTypes);
+
+            int x2 = x.Length;
+            for (int i = 0; i < x2; i++)
+                x.SetValue(t2.Invoke(null), i);
+        }
 
 
         
@@ -171,8 +186,6 @@ namespace u
             return x;
         }
 
-
-
-
+        public static bool xComS(this Size x, Size x2) => x.Width < x2.Width || x.Height < x2.Height;
     }
 }

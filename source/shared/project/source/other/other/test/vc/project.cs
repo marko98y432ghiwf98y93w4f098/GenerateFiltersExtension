@@ -42,7 +42,9 @@ namespace extension
 
             //children   notImportant
             object o4 = p.Configurations;          //iVcCollection
+#if !s2013
             object o1 = p.ActiveConfiguration;          //vcConfiguration          [Debug|Win32]
+#endif
             object o22 = p.Platforms;          //iVcCollection, vcPlatform
             object o38 = p.ToolFiles;          //iVcCollection,          customBuild rule files
 
@@ -84,17 +86,25 @@ namespace extension
             object o6 = p.FileFormat;          //enum   fileFormat (ansi, unicode, utf8)          [eUTF8]
 
             object o34 = p.ShowAllFiles;          //bool,          solutionExplorer show all disk files          [false]
+#if !s2013
             object o3 = p.Capabilities;          //string          [AllTargetOutputGroups IntegratedConsoleDebugging VisualStudioWellKnownOutputGroups VCProject SDKReferences native desktop ProjectReferences SupportsOnlineEnvironments SourceItemsFromImports ProjectConfigurationsDeclaredAsItems SharedProjectReferences VisualC WinRTReferences VCProjectEngineFactory OutputGroups RunningInVisualStudio Microsoft.VisualStudio.ProjectSystem.RetailRuntime AssemblyReferences PropertyManager COMReferences HostSetActiveProjectConfiguration]
+#endif
+#if !s2010
             object o9 = p.GetAllowedReferencesTypes;          //uint,   enum?          [36   32-shared   4-cpp]
-            
+#endif
+
             object o29 = p.RootNamespace;          //string,          rootNamespace for project to be used for managed resource dll naming          [projectName]
 
 
 
 
             //platform     notImportant
+#if !s2013
             object o15 = p.LatestTargetPlatformVersion;          //string          [10.0.22000.0]
+#endif
+#if !s2012
             object o35 = p.SupportedPlatformNames;          //string          [ARM;Win32;x64]
+#endif
             object o36 = p.TargetFrameworkMoniker;          //string          [null]
             object o37 = p.TargetFrameworkVersion;          //enumFrameworkVersion          [eFrameworkVersionUnknown]
 

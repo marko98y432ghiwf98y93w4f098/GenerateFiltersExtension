@@ -24,14 +24,14 @@ namespace extension
        
         private void button2Click(object sender, EventArgs e)          //callback
         {
-            ThreadHelper.ThrowIfNotOnUIThread();
+            //ThreadHelper.ThrowIfNotOnUIThread();          2012
 
 
 
 
 
-            
-            
+
+
             filterToDir.ProjectData p = new();          //prepare          //project
             {
                 Project x = projectUtility.pActive();
@@ -62,7 +62,7 @@ namespace extension
 
             
             
-            formQuestionFtd fq = new();          //gui          //check   2
+            using formQuestionFtd fq = new();          //gui          //check   2
             {
                 fq.labelInfoProject2.Text = /*xText(*/p.p.name/*)*/;
                 fq.labelInfoCalculate3.Text = /*xText(*/p.d.c.filter.x/*)*/;
@@ -106,7 +106,7 @@ namespace extension
             
             if (p.e.full)          //error
             {
-                formError fe = new();
+                using formError fe = new();
                 fe.textBox.Text = p.e.ToString();
                 fe.StartPosition = FormStartPosition.CenterScreen;
                 fe.ShowDialog((IWin32Window)projectUtility.dte.MainWindow.LinkedWindowFrame);

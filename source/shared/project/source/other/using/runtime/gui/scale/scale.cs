@@ -2,42 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Runtime.CompilerServices;
 using System.Windows.Forms;
-using u.api;
 
-namespace u.forms
+namespace u.forms.scale
 {
-    public static partial class S
+    public static partial class s
     {
-        //private static S s;          //static
-        //public static S s2 => s ??= new();
-
-        //public S() { }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         private static void f4(Control c, Action<Control> f)
         {
             IContainer f3(object x) => (IContainer)x.GetType().GetField("components", System.Reflection.BindingFlags.GetField | System.Reflection.BindingFlags.DeclaredOnly | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)?.GetValue(x);
@@ -53,7 +23,8 @@ namespace u.forms
                     if (x3 != null)
                         foreach (var x4 in x3)
                             if (x4 is Control x5)
-                                f(x5);
+                                if (!(x5 is ContextMenuStrip))
+                                    f(x5);
                 }
             }
         }
@@ -66,23 +37,57 @@ namespace u.forms
 
 
 
-        public static void scale(Control x, value v = null, Point? p = null)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public static bool scale(Control x, value v = null, Point? p = null)
         {
-            if ((v ??= value.x(x)) == null) return;
-            //if (p != null) p = x.PointToScreen((Point)p);          //p.Value + (Size)x.Location;
+            bool b = true;
+            if ((v ??= value.x(x)) == null) return false;
 
 
 
 
 
-            Dictionary<Control, control> x2 = new();
+            Dictionary<Control, control.control> x2 = new();
             {
                 void f(Control c)
                 {
                     x2.TryAdd(c, c.xControl());          //candidate
 
                     f4(c, f);
-                    
+
                     //c.AutoSize = false;
                 }
                 f(x);
@@ -90,6 +95,26 @@ namespace u.forms
 
                 x2.xFor(x => x.Value.init2());
             }
+
+
+
+
+
+            {
+                void f1(Control c)
+                {
+                    if (!x2.TryGetValue(c, out var x3)) return;
+
+                    x3.s.x[3] = x3.s.x[1];
+                    x3.s.x[4] = x3.s.x[2];
+                    x3.s.v[1] = x3.s.v[0];
+
+                    f4(c, f1);
+                }
+                f1(x);
+            }
+
+
 
 
 
@@ -105,9 +130,12 @@ namespace u.forms
                     //w32.other.SendMessageW(c.Handle, w32.other.message.paintRedrawSet, 0, 0);
                     //if (c is form2 c3) c3.f.draw = false;
 
-                    x3.x[2].x = x3.x[1].x.scale(c, v, x3.v, p);
-                    x3.x[2].x.save(c.xControl());
-                    x3.v = new(v.s2);
+                    x3.s.x[2] = x3.s.x[1].scale(c, v, x3.s.v[0], p);
+                    x3.s.x[2].save(x3);
+                    x3.s.v[0] = v.clone();
+
+                    if (c is Form c2)
+                        if (c2.ClientSize != x3.s.x[2].x.x2.s2) throw new();
                 }
 
 
@@ -121,12 +149,58 @@ namespace u.forms
                     //if (c is form2 c3) { c3.f.draw = true; c3.Invalidate(true); }
                 }
             }
-            f2(x);
 
+
+
+
+
+            try
+            {
+                f2(x);
+            }
+            catch (Exception)
+            {
+                b = false;
+
+                void f3(Control c)
+                {
+                    if (!x2.TryGetValue(c, out var x3)) return;
+
+                    c.SuspendLayout();
+
+                    x3.s.x[1] = x3.s.x[3];
+                    x3.s.x[2] = x3.s.x[4];
+                    x3.s.v[0] = x3.s.v[1];
+
+                    x3.s.x[2].save(x3);
+
+
+                    f4(c, f3);
+
+
+                    c.ResumeLayout(false);
+                }
+                f3(x);
+            }
 
 
             x.Invalidate(true);
+            return b;
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -160,16 +234,19 @@ namespace u.forms
         public static void scale2(Control x, Point? p = null)
         {
             var x2 = x.xControl();
-            x2.x[1].xs = x2.x[0].xs;
+            x2.s.xs[1] = x2.s.xs[0];
             scale(x, null, p);
-            //var x3 = x.Location;
+            
 
 
 
+            /*if (x2.s.x[2].x.x != x.Location)
+            {
+
+            }*/
 
 
-
-
+            
 
 
             bool b = true;
@@ -177,11 +254,11 @@ namespace u.forms
             {
                 var x2 = x.xControl();
 
-                var x3 = x2.x[1].x.x.x;
-                x2.x[1] = x2.x[0];
-                if (b) { x2.x[1].x.x.x = x3; b = false; }
+                var x3 = x.Location;          //x2.s.x[2].x.x
+                x2.s.x[1] = x2.s.x[0];
+                if (b) { x2.s.x[1].x.x = x3; b = false; }
 
-                x2.v = null;
+                x2.s.v[0] = null;
 
                 f4(x, f);
             }
@@ -204,8 +281,73 @@ namespace u.forms
 
             //x.Invalidate(true);
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public static void scale3(Control x)
+        {
+            void f(Control x)
+            {
+                u.forms.scale.control.control.c2(x);
+                f4(x, f);
+            }
+            f(x);
+        }
     }
 }
+
+
+
+
+
+
+
+
 
 
 
@@ -309,8 +451,8 @@ namespace u          //extensions
 
 
 
-        public static void xScale(this Control x, Control x2 = null, Point? p = null) { /*f(x2);*/ u.forms.S.scale(x, u.forms.S.value.x(x2), p); }        //control
-        public static void xScale2(this Control x, Point? p = null) { u.forms.S.scale2(x, p); }
+        public static bool xScale(this Control x, Control x2 = null, Point? p = null) { /*f(x2);*/ return u.forms.scale.s.scale(x, u.forms.scale.s.value.x(x2), p); }        //control
+        public static void xScale2(this Control x, Point? p = null) { u.forms.scale.s.scale2(x, p); }
         //public static double xDpiG(this Control x, Control x2 = null) { f(x2); return u.forms.dpi.f.g(x); }
         //public static double xDpiD(this Control x, Control x2 = null) { f(x2); return u.forms.dpi.f.d(x); }
 
@@ -323,6 +465,6 @@ namespace u          //extensions
 
 
 
-        public static u.forms.S.control xControl(this Control x) => u.forms.S.control.c(x);
+        public static u.forms.scale.control.control xControl(this Control x) => u.forms.scale.control.control.c(x);
     }
 }

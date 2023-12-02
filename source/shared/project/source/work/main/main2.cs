@@ -57,7 +57,7 @@ namespace extension
 
 
 
-            u.forms.S.data.init(1080);
+            //u.forms.scale.s.data.init(1080);
         }
 
 
@@ -84,7 +84,7 @@ namespace extension
         
         void buttonBeforeQueryStatus(object sender, EventArgs e)          //callback
         {
-            ThreadHelper.ThrowIfNotOnUIThread();
+            //ThreadHelper.ThrowIfNotOnUIThread();          2012
             OleMenuCommand x = (OleMenuCommand)sender;
             if (x == null) return;
 

@@ -28,12 +28,12 @@ namespace extension
         
         private void buttonClick(object sender, EventArgs e)          //callback
         {
-            ThreadHelper.ThrowIfNotOnUIThread();
+            //ThreadHelper.ThrowIfNotOnUIThread();          2012
 
 
 
-            
-            
+
+
             dirToFilter.ProjectData p = new();          //prepare          //project
             {
                 Project x = projectUtility.pActive();
@@ -96,7 +96,7 @@ namespace extension
 
 
 
-            formQuestion fq = new();          //check   2
+            using formQuestion fq = new();          //check   2
             {
                 fq.labelInfoProject2.Text = /*xText(*/p.p.name/*)*/;
                 fq.labelInfoCalculate3.Text = /*xText(*/p.d.c.dir/*)*/;
@@ -115,7 +115,7 @@ namespace extension
             
             if (fq.r == formQuestion.Result.advanced)          //check   2   advanced
             {
-                formAdvanced fa = new();
+                using formAdvanced fa = new();
                 {
                     fa.textBoxIn.Text = p.d.i.dir;
                     fa.textBoxRootDir.Text = p.d.c.dir;
@@ -177,7 +177,7 @@ namespace extension
             
             if (p.e.full)          //error
             {
-                formError fe = new();
+                using formError fe = new();
                 fe.textBox.Text = p.e.ToString();
                 fe.StartPosition = FormStartPosition.CenterScreen;
                 fe.ShowDialog((IWin32Window)projectUtility.dte.MainWindow.LinkedWindowFrame);

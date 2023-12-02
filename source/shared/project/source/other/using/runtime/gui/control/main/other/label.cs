@@ -6,8 +6,10 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Windows.Markup;
+using u.forms.scale.control;
+using align = u.forms.scale.control.control.position.align;
 
-namespace u.forms.label
+namespace u.forms.control
 {
 
 
@@ -39,19 +41,19 @@ namespace u.forms.label
 
 
 
-        static Dictionary<ContentAlignment, (S.control.position.align.a x, S.control.position.align.a y)> textAlign2 = new()          //align
+        static Dictionary<ContentAlignment, (align.a x, align.a y)> textAlign2 = new()          //align
         {
-            { ContentAlignment.TopLeft, (S.control.position.align.a.l, S.control.position.align.a.l) },
-            { ContentAlignment.TopCenter, (S.control.position.align.a.m, S.control.position.align.a.l) },
-            { ContentAlignment.TopRight, (S.control.position.align.a.r, S.control.position.align.a.l) },
+            { ContentAlignment.TopLeft, (align.a.l, align.a.l) },
+            { ContentAlignment.TopCenter, (align.a.m, align.a.l) },
+            { ContentAlignment.TopRight, (align.a.r, align.a.l) },
 
-            { ContentAlignment.MiddleLeft, (S.control.position.align.a.l, S.control.position.align.a.m) },
-            { ContentAlignment.MiddleCenter, (S.control.position.align.a.m, S.control.position.align.a.m) },
-            { ContentAlignment.MiddleRight, (S.control.position.align.a.r, S.control.position.align.a.m) },
+            { ContentAlignment.MiddleLeft, (align.a.l, align.a.m) },
+            { ContentAlignment.MiddleCenter, (align.a.m, align.a.m) },
+            { ContentAlignment.MiddleRight, (align.a.r, align.a.m) },
 
-            { ContentAlignment.BottomLeft, (S.control.position.align.a.l, S.control.position.align.a.r) },
-            { ContentAlignment.BottomCenter, (S.control.position.align.a.m, S.control.position.align.a.r) },
-            { ContentAlignment.BottomRight, (S.control.position.align.a.r, S.control.position.align.a.r) },
+            { ContentAlignment.BottomLeft, (align.a.l, align.a.r) },
+            { ContentAlignment.BottomCenter, (align.a.m, align.a.r) },
+            { ContentAlignment.BottomRight, (align.a.r, align.a.r) },
         };
 
         public override ContentAlignment TextAlign

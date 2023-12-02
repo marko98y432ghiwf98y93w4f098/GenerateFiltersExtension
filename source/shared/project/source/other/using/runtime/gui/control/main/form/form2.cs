@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using u.api;
 
-namespace u.forms.form
+namespace u.forms.control.form
 {
     public class form2 : Form
     {
@@ -323,6 +323,12 @@ namespace u.forms.form
         {
             this.MaximumSize = new(7000, 7000);
             this.AutoScaleMode = AutoScaleMode.None;
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            u.forms.scale.s.scale3(this);
+            base.Dispose(disposing);
         }
     }
 }

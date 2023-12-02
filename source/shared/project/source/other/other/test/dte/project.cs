@@ -19,18 +19,46 @@ namespace extension
 {
     public partial class test
     {
-        
-        public static void dPropertyList(Properties p, HashSet<string> x)          //properties
+
+
+        public static IEnumerable<Property> dProperty(Properties p)
         {
-            foreach (Property x2 in p)
-                x.Add(x2.Name);
+            List<Property> p2 = new();
+            foreach (Property p3 in p)
+                p2.Add(p3);
+            return p2;
         }
 
 
 
 
+
+
+        
+        
+
+
         public static void dProject(Project p)
         {
+            void dPropertyList(Properties p, HashSet<string> x)          //properties
+            {
+                foreach (Property x2 in p)
+                    x.Add(x2.Name);
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             {
                 HashSet<string> s = new();
@@ -43,6 +71,7 @@ namespace extension
 
 
             
+
             {
                 HashSet<string> s = new();
                 foreach (Project p1 in p.DTE.Solution.Projects)          //properties   projectItems
@@ -55,9 +84,8 @@ namespace extension
                 foreach (string s3 in s.ToList().OrderBy(x => x)) s2 += s3 + "\r\n";
             }
 
+
             ProjectItem[] o0 = p.ProjectItems.OfType<ProjectItem>().ToArray();
-
         }
-
     }
 }

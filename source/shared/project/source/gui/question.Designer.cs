@@ -1,4 +1,4 @@
-﻿using u.forms.label;
+﻿using u.forms.control;
 
 namespace extension
 {
@@ -260,7 +260,7 @@ namespace extension
             Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "formQuestion";
-            MouseDown += formQuestionMouseDown;
+            MouseDown += fMouseDown;
             groupBoxQuestion.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();

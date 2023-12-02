@@ -6,10 +6,9 @@ using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using u.api;
 
-namespace u.forms
+namespace u.forms.scale.control
 {
-    public static partial class S
-    {
+    
         
 
 
@@ -40,7 +39,18 @@ namespace u.forms
 
             public Font toFont() => x = new Font(x2, (float)x3, x4, x5, x6, x7);
 
-            public bool compare(Font x2) => x.FontFamily == x2.FontFamily && x.Size == x2.Size && x.Style == x2.Style && x.Unit == x2.Unit && x.GdiCharSet == x2.GdiCharSet && x.GdiVerticalFont == x2.GdiVerticalFont;
+            public bool compare(Font x2)
+            {
+                bool b = x.FontFamily.Name == x2.FontFamily.Name && x.Size == x2.Size && x.Style == x2.Style && x.Unit == x2.Unit && x.GdiCharSet == x2.GdiCharSet && x.GdiVerticalFont == x2.GdiVerticalFont;
+                bool b1 = x.FontFamily == x2.FontFamily;
+                bool b2 = x.Size == x2.Size && x.Style == x2.Style && x.Unit == x2.Unit && x.GdiCharSet == x2.GdiCharSet && x.GdiVerticalFont == x2.GdiVerticalFont;
+
+                /*if (!b)
+                {
+                    int x234 = 10;
+                }*/
+                return b;
+            }
 
 
 
@@ -62,5 +72,5 @@ namespace u.forms
 
 
         
-    }
+    
 }

@@ -21,12 +21,12 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>..\..\shared\other\package\resource\icon.ico</ApplicationIcon>
-    <LangVersion>9.0</LangVersion>
+    <LangVersion>12.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\$(Platform)\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;sVs2015</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;s2015</DefineConstants>
     <Optimize>false</Optimize>
     <DebugType>full</DebugType>
     <ErrorReport>prompt</ErrorReport>
@@ -34,7 +34,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <OutputPath>bin\$(Platform)\Release\</OutputPath>
-    <DefineConstants>TRACE;sVs2015</DefineConstants>
+    <DefineConstants>TRACE;s2015</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>none</DebugType>
     <ErrorReport>prompt</ErrorReport>
@@ -92,12 +92,12 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.VisualStudio.VCProject, Version=17.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <Reference Include="Microsoft.VisualStudio.VCProject, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>other\package\resource\Microsoft.VisualStudio.VCProject.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.VisualStudio.VCProjectEngine, Version=17.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <Reference Include="Microsoft.VisualStudio.VCProjectEngine, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>other\package\resource\Microsoft.VisualStudio.VCProjectEngine.dll</HintPath>

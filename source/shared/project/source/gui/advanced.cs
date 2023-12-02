@@ -9,11 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using u;
-using u.forms.form;
+using u.forms.control.form;
 
 namespace extension
 {
-    public partial class formAdvanced : form2
+    public partial class formAdvanced :  form3
     {
         public enum Result
         {
@@ -31,27 +31,14 @@ namespace extension
 
             {
                 var x = this.xControl();
-                x.x[0].xs = x.x[1].xs = 0.9609803444828163;
+                x.s.xs[0] = x.s.xs[1] = 0.9609803444828163;
             }
-            this.xScale();
 
-            this.MouseWheel += fMouseWheel;
+            init();
         }
 
 
-        private void fMouseWheel(object sender, MouseEventArgs e)
-        {
-            if (e.Delta > 0)
-                this.xControl().x[1].xs *= 1.01;
-            else
-                this.xControl().x[1].xs /= 1.01;
-            this.xScale(null, System.Windows.Forms.Cursor.Position);
-        }
-
-        private void formAdvancedMouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Middle) this.xScale2(System.Windows.Forms.Cursor.Position);
-        }
+        
 
 
 

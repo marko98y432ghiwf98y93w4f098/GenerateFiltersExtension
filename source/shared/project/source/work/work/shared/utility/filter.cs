@@ -1,4 +1,5 @@
 ﻿using EnvDTE;
+using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.VCProjectEngine;
 using System;
 using System.Collections.Generic;
@@ -153,7 +154,7 @@ namespace extension
                 f.initRoot(p, a);
 
 
-                
+
                 {
                     List<string> x = new();//check
 
@@ -184,9 +185,74 @@ namespace extension
 
 
 
+
+
             public void init(shared.Project p, error e)
             {
+
+
                 VCReferences xr = (VCReferences)p.p.VCReferences;
+                //HashSet<VCProject> xp = new();
+                HashSet<string> xp2 = new();
+
+
+                if (!p.flagVcxItems)
+                {
+                    List<VCReference> xr2 = new();          //reference   search          VCSharedProjectReference   2013          GetReferencesOfType   2010
+                    foreach (VCReference x in xr)
+                    {
+                        bool f(VCReference x)
+                        {
+#if !s2015
+                            if (x.VCReferenceType == 32) return true;
+#endif
+                            return x.Kind == "VCSharedProjectReference" || x.FullPath.EndsWith(".vcxItems", StringComparison.OrdinalIgnoreCase);
+                        }
+
+                        if (!f(x)) continue;
+                        xr2.Add(x);
+                        //xp.Add((VCProject)x.project);
+                        //VCProject p7 = (VCProject)x.project;
+                        xp2.Add(x.FullPath);
+                    }
+
+                    foreach (VCReference x in xr2)          //reference   remove
+                        xr.RemoveReference(x);
+                }
+
+
+
+
+
+
+
+                init2(p.p, e);          //projectItems
+
+
+
+
+
+
+
+                if (!p.flagVcxItems)
+                    foreach (var x in xp2)
+                    {
+#if !s2013
+                        xr.AddSharedProjectReference(x, out bool b);          //reference   add          AddSharedProjectReference (2013)
+#else
+                        xr.AddProjectReference(x);
+#endif
+                    }
+
+
+
+
+
+
+
+
+
+                /*VCReferences xr = (VCReferences)p.p.VCReferences;
                 HashSet<string> xp = new();
 
 
@@ -201,19 +267,13 @@ namespace extension
 
 
 
-                
+
                 init2(p.p, e);          //projectItems
 
 
 
-                if (!p.flagVcxItems) foreach (string x in xp) xr.AddSharedProjectReference(x, out bool x3);          //reference   add
+                if (!p.flagVcxItems) foreach (string x in xp) xr.AddSharedProjectReference(x, out bool x3);          //reference   add*/
             }
-
-
-
-
-
-
         }
     }
 }
